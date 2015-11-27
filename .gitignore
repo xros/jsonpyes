@@ -1,0 +1,68 @@
+# Ignore .directory created by file manager dolphine
+.directory
+# For csv.gz data
+*.csv.gz
+# For aria2 downloading tempearary files
+*.aria2
+# For url(s) which was captured by pandas from HTML pages
+*.url
+# For ruby tool "dap" packages
+# Ignore rvm files
+.ruby-version
+.ruby-gemset
+
+# Ignore geoip data file
+data/geoip.dat
+
+data/
+env_python27_nervey/
+*.swp
+*.swo
+*.swq
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*~
+.idea/
+.idea/*
+# C extensions
+*.so
+# Distribution / packaging
+.Python
+env/
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+# Translations
+*.mo
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+# Rope
+.ropeproject
+# Django stuff:
+*.log
+*.pot
+# Sphinx documentation
+docs/_build/

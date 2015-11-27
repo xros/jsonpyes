@@ -1,0 +1,4 @@
+{"index":{"_index":"serverdata", "_type":"smtp"}}
+{"ip":"23.91.113.228","timestamp":"2015-10-16T14:00:13-04:00","data":{"banner":"220 poppy.arvixe.com ESMTP\r\n","ehlo":"250-poppy.arvixe.com\r\n250-SIZE 20480000\r\n250 AUTH LOGIN\r\n","starttls":"502 STARTTLS NOT ALLOWED.\r\n"},"error":"Bad return code for STARTTLS","error_component":"starttls"}
+{"index":{"_index":"serverdata", "_type":"smtp"}}
+{"ip":"204.3.67.57","timestamp":"2015-10-16T14:00:13-04:00","data":{"banner":"220 center-transforming-relationships.com ESMTP \r\n","ehlo":"250-center-transforming-relationships.com \r\n250-PIPELINING\r\n250-SIZE 36700160\r\n250 8BITMIME\r\n","starttls":"502 unimplemented (#5.5.1)\r\n"},"error":"Bad return code for STARTTLS","error_component":"starttls"}
