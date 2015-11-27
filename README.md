@@ -2,6 +2,7 @@ json-py-es
 ==========
 Alexander Liu
 * To import raw JSON data files to ElasticSearch using Python
+### Installation
 * ```pip install jsonpyes```
 
 > In the past we import data in this way. Too many jobs by hands...
