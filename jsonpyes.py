@@ -196,7 +196,6 @@ def run():
             return
         
         # 2) Only import without checking
-        # TODO
         elif "check" not in process_jobs and "import" in process_jobs:
             es = Elasticsearch([bulk], verify_certs=True)
             # read JSON data
