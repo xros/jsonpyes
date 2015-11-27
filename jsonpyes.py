@@ -17,7 +17,7 @@ Instructions:
 
 
 def show_version():
-        print("1.1.2)
+        print("1.1.3)
 
 
 def show_help():
