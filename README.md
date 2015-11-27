@@ -5,7 +5,9 @@ Alexander Liu
 
 > In the past we import data in this way. Too many jobs by hands...
 > ![Alt](static/snapshot106.jpg)
+> 
 > Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes data in its API way. 
+> 
 > But now let `json-py-es` glue them all.
 
 
