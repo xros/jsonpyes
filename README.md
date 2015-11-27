@@ -18,7 +18,7 @@ jsonpyes
 
 
 ##### 1. Only validating
-* ```bash
+* ```
 python jsonpyes.py --data raw_data.json --check
 ```
 
@@ -30,7 +30,7 @@ python jsonpyes.py --data raw_data.json --check
 
 ##### 2. Only importing without validating
 * Notice: If the raw JSON data file is invalid, ElasticSearch will not import it.
-* ```bash
+* ```
 python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2
 ```
 ![Alt](static/snapshot102.jpg)
@@ -39,7 +39,7 @@ python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --
 ![Alt](static/snapshot105.jpg)
 
 ##### 3. Both validating and importing
-* ```bash
+* ```
 python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check
 ```
 ![Alt](static/snapshot100.jpg)
