@@ -1,4 +1,5 @@
 from distutils.core import setup 
+from setuptools import find_packages
 from jsonpyes import version
 
 
@@ -29,5 +30,7 @@ setup(name='jsonpyes',
         classifiers=[],
         # Make this script executable in command line
         scripts=['jsonpyes.py'],
-        packages=['contrib', ],
+        #packages=['contrib', ],
+        packages=find_packages(),
+        include_package_data=True,
         )
