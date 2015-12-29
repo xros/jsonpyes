@@ -9,7 +9,7 @@ import linecache
 from contrib.utils import count_file_lines as c_file_lines
 __author__ = "Alexander Liu"
 
-version = "1.2.0"
+version = "1.2.1"
 
 
 """
