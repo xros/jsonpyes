@@ -42,20 +42,20 @@ jsonpyes
 ![Alt](static/snapshot102.jpg)
 
 ** jsonpyes supports multi-threads when importing data to elasticsearch
-![Alt](static/snapshot132.jpg)
+![Alt](static/snapshot132.png)
 
 > As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be slightly faster.
 That really depends on your computer/server resources.
 This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 
-![Alt](static/snapshot133.jpg)
+![Alt](static/snapshot133.png)
 
 * And it works.
 ![Alt](static/snapshot105.jpg)
 
 ##### 3. Both validating and importing
 * ```python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
-![Alt](static/snapshot135.jpg)
+![Alt](static/snapshot135.png)
 
 * And it works.
 ![Alt](static/snapshot101.jpg)
