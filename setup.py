@@ -1,7 +1,7 @@
 from distutils.core import setup 
 
 setup(name='jsonpyes',
-        version='1.1.6',
+        version='1.1.7',
         author="Alexander Liu",
         license="GPL V3",
         description="Import JSON raw data to ElasticSearch using Python in one line of commands",
