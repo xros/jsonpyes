@@ -2,3 +2,5 @@
 jsonpyes.py
 setup.cfg
 setup.py
+contrib/__init__.py
+contrib/utils.py
