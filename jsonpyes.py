@@ -9,6 +9,7 @@ import linecache
 from contrib.utils import count_file_lines as c_file_lines
 __author__ = "Alexander Liu"
 
+version = "1.2.1"
 
 
 """
@@ -19,9 +20,8 @@ Instructions:
     3. After validating successfully, then import data to ElasticSearch
 """
 
-
 def show_version():
-        print("1.1.6")
+    print(version)
 
 
 def show_help():
@@ -34,6 +34,15 @@ def show_help():
         
                         Import JSON to ElasticSearch using Python
                                                            -- Alexander Liu
+
+                                                           """
+                                                           +
+                                                           
+                                                           version
+
+                                                           +
+                                                           """
+
             
     This program prints files to standard output.
     Any number of files can be specified.
