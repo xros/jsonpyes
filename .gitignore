@@ -1,3 +1,5 @@
+# Ignore temp big raw JSON data file
+raw_big_data.json
 # Ignore .directory created by file manager dolphine
 .directory
 # For csv.gz data

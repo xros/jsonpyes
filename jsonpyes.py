@@ -4,6 +4,10 @@ from elasticsearch import helpers
 import sys
 import subprocess
 import simplejson as json
+import threading
+import linecache
+from contrib.utils import count_file_lines as c_file_lines
+__author__ = "Alexander Liu"
 
 
 
@@ -17,7 +21,7 @@ Instructions:
 
 
 def show_version():
-        print("1.1.5")
+        print("1.1.6")
 
 
 def show_help():
@@ -41,6 +45,7 @@ def show_help():
         --index                 : Index name
         --type                  : Index type
         --import                : Import raw JSON data to ES. This proccess does "--check" and data importing
+        --thread                : Threads amount, default 2. The more threads, the faster when importing or checking
         --version               : Prints the version number 
         --help                  : Display this help 
 
@@ -55,13 +60,12 @@ def show_help():
     > $~ python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1
     > Successfully data imported!
 
-    3) Import after checking successfully
-    > $~ python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check
+    3) Import after checking successfully with 8 threads
+    > $~ python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check --thread 8
     > Successfully data checked and imported!
 
+
     """)
-
-
 
 
 
@@ -91,6 +95,67 @@ def validate_json_data(json_file=""):
             # assume all JSON valid
             return True
 
+
+class StoppableThread(threading.Thread):
+    """Thread class with a stop() method. The thread itself has to check
+        regularly for the stopped() condition."""
+
+    def __init__(self, *args, **kwargs):
+        super(StoppableThread, self).__init__()
+        self._stop = threading.Event()
+
+    def stop(self):
+        self._stop.set()
+
+    def stopped(self):
+        return self._stop.isSet()
+
+
+
+class Jsonpyes(object):
+    """Re-edit this in the future maybe.
+    Pending, no need until now
+    """
+    
+    def __init__(self):
+        pass
+
+    def count_file_lines(json_files=""):
+        return c_file_lines(json_file)
+
+    def validate_json_data(json_file=""):
+        """
+        To validate whether the JSON data file is fully a JSON file without any format validation
+        """
+        if str(json_file)=="":
+            raise ValueError("No JSON file was input\n")
+        else:
+            try:
+                f = open(json_file, 'r')
+            except IOError as e:
+                raise IOError('Can not open the file "%s" with error \n%s\n' % (json_file, str(e)))
+            else:
+                f.close()
+                with open(json_file, 'r') as f:
+                    for line in f:
+                        # try to load each line of JSON data and convert it into Python object
+                        try:
+                            one_dict = json.loads(line)
+                        except Exception as e:
+                            print("JSON data not valid with error \n %s \n" % (str(e)))
+                            return False
+                        else:
+                            pass
+                # assume all JSON valid
+                return True
+    
+    # TODO add muti-threads support
+    def importWithOutChecking(self):
+        pass
+
+
+    def importAfterChecking(self):
+        pass
 
 
 def run():
@@ -166,11 +231,22 @@ def run():
                         "import"
                     )
 
+                # add multi-threads support
+                elif option == "thread":
+                    # Add info to jobs
+                    process_jobs.append(
+                        {"thread_amount": sys.argv[i+1]}
+                    ) 
+                    process_jobs.append(
+                        "thread"
+                    )
+                
 
         data = ""
         bulk = ""
         index = ""
         doc_type = ""
+        thread_amount = 1
         # Get info from process_jobs
         for job in process_jobs:
             if type(job) == dict:
@@ -182,21 +258,27 @@ def run():
                     index = job['index']
                 if job.has_key('type'):
                     doc_type = job['type']
-        # Process the jobs in process_jobs
-        # 1) Only check JSON data
-        if "check" in process_jobs and "import" not in process_jobs:
+                if job.has_key('thread'):
+                    thread_amount = int(job['thread_amount'])
+
+        #### 1) Only check not importing
+        if ("check" in process_jobs) and ("import" not in process_jobs) :
             # check JSON
             flag = validate_json_data(json_file=data)
             if flag == True:
                 print("All raw JSON data valid!")
-            else:
-            # if data is not valid, function validate_json_data already dumped error info
-                pass
-            
             return
-        
+                
+        # Process the jobs in process_jobs
         # 2) Only import without checking
-        elif "check" not in process_jobs and "import" in process_jobs:
+        #### 2.1) import, check , no multi-threads
+        if ("check" in process_jobs) and ("import" in process_jobs) and ("thread" not in process_jobs):
+            
+            # check JSON
+            flag = validate_json_data(json_file=data)
+            if flag == True:
+                print("All raw JSON data valid!")
+                
             es = Elasticsearch([bulk], verify_certs=True)
             # read JSON data
             with open(data, 'r') as f:
@@ -208,21 +290,10 @@ def run():
             
             print("Successfully data imported!")
             return
-            
-            
-        
-        # 3) Import after checking successfully
-        elif "check" in process_jobs and "import" in process_jobs:
-            # check JSON
-            flag = validate_json_data(json_file=data)
-            if flag == True:
-                print("All raw JSON data valid!\n")
-            else:
-            # if data is not valid, function validate_json_data already dumped error info
-                print("JSON data not valid!")
-                return
-            
-            # Begin to import to ElasticSearch
+
+
+        #### 2.2) import, no check, no multi-threads
+        if ("check" not in process_jobs) and ("import" in process_jobs) and ("thread" not in process_jobs):
             es = Elasticsearch([bulk], verify_certs=True)
             # read JSON data
             with open(data, 'r') as f:
@@ -232,9 +303,233 @@ def run():
                         body=json.loads(line)
                     )
             
-            print("Successfully data checked and imported!")
+            print("Successfully data imported!")
             return
-        
+
+
+        #### 2.3) import, no check, multi-threads
+        if ("import" in process_jobs) and ("check" not in process_jobs) and ("thread" in process_jobs):
+   
+
+
+            # check file lines
+            lines = c_file_lines(json_file=data)
+            # if lines < 1024, it will only use 1 thread to finish this job, no matter how many you want
+            if lines < 1024:
+            #if lines < 4:                                              # Only for debugging 
+                es = Elasticsearch([bulk], verify_certs=True)
+                # read JSON data
+                with open(data, 'r') as f:
+                    for line in f:
+                        es.index(index=index, doc_type=doc_type, 
+                            #id=2, 
+                            body=json.loads(line)
+                        )
+            else:
+
+                # lets assume if there were 17 lines and 4 threads, 
+                # thread (1)(2)(3) can have 5 job tasks maximumly. thread (4) only has 2 job tasks
+                #
+                # their job list:
+                #               iter 0        iter 1             iter 2            iter 3
+                #               thread 1      thread 2           thread 3          thread 4
+                # line/job num  1,2,3,4,5     6,7,8,9,10         11,12,13,14,15    16,17
+                #
+                # iter means iteration
+                #
+
+                start_stop_line_list = []
+                last_remains = lines % thread_amount                        # 17 % 4 -> 1
+
+                # for example if lines -> 17
+                if last_remains:
+                    # entend the lines to ideally perfect
+                    fair_average = (lines + thread_amount - last_remains) / thread_amount           # ( 17 + 4 - 1 ) / 4 = 5
+
+
+                    # dump 'start' and 'stop' 
+                    for i in range(thread_amount):
+
+                            # if has last_remains
+                            if i != range(thread_amount)[-1]:
+                                start_stop_line_list.append( 
+                                        {
+                                            "start": i*fair_average + 1,            # line includes 1
+                                            "stop": ( i+1 )*fair_average            # line includes 5
+                                })
+                            else:
+                                start_stop_line_list.append( 
+                                        {
+                                            "start": i*fair_average + 1,            # line includes 16
+                                            "stop": lines                           # line includes 17
+                                })
+
+
+                # for example if lines -> 20
+                else:
+                    # dump 'start' and 'stop' 
+                    for i in range(thread_amount):
+
+                        fair_average = lines / thread_amount                                            # 20 / 4 = 5
+
+                        start_stop_line_list.append( 
+                                {
+                                    "start": i*fair_average + 1,                # line includes 16
+                                    "stop": ( i+1 )*fair_average                # line includes 20
+                        })
+
+
+
+
+
+                def worker_import_to_es_for_threading(data=data, start_line=0, stop_line=0):
+                    # NOTICE: the 'start_line' and 'stop_line' are all included. 'stop_line' can not be omitted.
+                    es = Elasticsearch([bulk], verify_certs=True)
+                    # Using linecache to read big data in RAM
+                    for i in range(start_line, stop_line + 1):
+                        es.index(
+                                index=index, doc_type=doc_type, 
+                                #id=2, 
+                                body=json.loads(linecache.getline(data, i))
+                        )
+
+
+                
+                threads = []
+                for i in start_stop_line_list:
+                    #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
+                    t = threading.Thread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
+                    threads.append(t)
+                    t.start()
+                    t.join()
+                    
+
+                # stop all threads if interrupts
+                try:
+                    while len(threading.enumerate()):
+                        pass
+                except KeyboardInterrupt:
+                    for i in threads:
+                        i.stop()
+
+            print("Successfully data imported!")
+            return
+ 
+ 
+         #### 2.4) import, check, multi-threads
+
+        if ("import" in process_jobs) and ("check" in process_jobs) and ("thread" in process_jobs):
+
+            # check JSON
+            flag = validate_json_data(json_file=data)
+            if flag == True:
+                print("All raw JSON data valid!")
+
+
+
+            # check file lines
+            lines = c_file_lines(json_file=data)
+            # if lines < 1024, it will only use 1 thread to finish this job, no matter how many you want
+            if lines < 1024:
+            #if lines < 4:                                              # Only for debugging 
+                es = Elasticsearch([bulk], verify_certs=True)
+                # read JSON data
+                with open(data, 'r') as f:
+                    for line in f:
+                        es.index(index=index, doc_type=doc_type, 
+                            #id=2, 
+                            body=json.loads(line)
+                        )
+            else:
+
+                # lets assume if there were 17 lines and 4 threads, 
+                # thread (1)(2)(3) can have 5 job tasks maximumly. thread (4) only has 2 job tasks
+                #
+                # their job list:
+                #               iter 0        iter 1             iter 2            iter 3
+                #               thread 1      thread 2           thread 3          thread 4
+                # line/job num  1,2,3,4,5     6,7,8,9,10         11,12,13,14,15    16,17
+                #
+                # iter means iteration
+                #
+
+                start_stop_line_list = []
+                last_remains = lines % thread_amount                        # 17 % 4 -> 1
+
+                # for example if lines -> 17
+                if last_remains:
+                    # entend the lines to ideally perfect
+                    fair_average = (lines + thread_amount - last_remains) / thread_amount           # ( 17 + 4 - 1 ) / 4 = 5
+
+
+                    # dump 'start' and 'stop' 
+                    for i in range(thread_amount):
+
+                            # if has last_remains
+                            if i != range(thread_amount)[-1]:
+                                start_stop_line_list.append( 
+                                        {
+                                            "start": i*fair_average + 1,            # line includes 1
+                                            "stop": ( i+1 )*fair_average            # line includes 5
+                                })
+                            else:
+                                start_stop_line_list.append( 
+                                        {
+                                            "start": i*fair_average + 1,            # line includes 16
+                                            "stop": lines                           # line includes 17
+                                })
+
+
+                # for example if lines -> 20
+                else:
+                    # dump 'start' and 'stop' 
+                    for i in range(thread_amount):
+
+                        fair_average = lines / thread_amount                                            # 20 / 4 = 5
+
+                        start_stop_line_list.append( 
+                                {
+                                    "start": i*fair_average + 1,                # line includes 16
+                                    "stop": ( i+1 )*fair_average                # line includes 20
+                        })
+
+
+
+
+
+                def worker_import_to_es_for_threading(data=data, start_line=0, stop_line=0):
+                    # NOTICE: the 'start_line' and 'stop_line' are all included. 'stop_line' can not be omitted.
+                    es = Elasticsearch([bulk], verify_certs=True)
+                    # Using linecache to read big data in RAM
+                    for i in range(start_line, stop_line + 1):
+                        es.index(
+                                index=index, doc_type=doc_type, 
+                                #id=2, 
+                                body=json.loads(linecache.getline(data, i))
+                        )
+
+
+                
+                threads = []
+                for i in start_stop_line_list:
+                    #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
+                    t = threading.Thread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
+                    threads.append(t)
+                    t.start()
+                    t.join()
+                    
+
+                # stop all threads if interrupts
+                try:
+                    while len(threading.enumerate()):
+                        pass
+                except KeyboardInterrupt:
+                    for i in threads:
+                        i.stop()
+
+            print("Successfully data imported!")
+            return
+ 
         else:
             show_help()
             return
