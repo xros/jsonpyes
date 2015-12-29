@@ -1,7 +1,7 @@
 json-py-es
 ==========
 Alexander Liu
-* To import raw JSON data files to ElasticSearch using Python
+* To import raw JSON data files to ElasticSearch using Python in one line of commands
 
 ### Installation
 
@@ -38,18 +38,28 @@ jsonpyes
 ##### 2. Only importing without validating
 * Notice: If the raw JSON data file is invalid, ElasticSearch will not import it.
 * ```python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
+* Or enable multi-threads ```python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
 ![Alt](static/snapshot102.jpg)
+
+** jsonpyes supports multi-threads when importing data to elasticsearch
+![Alt](static/snapshot132.png)
+
+> As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be slightly faster.
+That really depends on your computer/server resources.
+This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
+
+![Alt](static/snapshot133.png)
 
 * And it works.
 ![Alt](static/snapshot105.jpg)
 
 ##### 3. Both validating and importing
 * ```python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
-![Alt](static/snapshot100.jpg)
+![Alt](static/snapshot135.png)
 
 * And it works.
 ![Alt](static/snapshot101.jpg)
 
 
 
-##### Happy Hacking!
+##### Happy hacking!
