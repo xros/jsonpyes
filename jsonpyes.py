@@ -49,8 +49,6 @@ def show_help():
                                                            """
 
             
-    This program prints files to standard output.
-    Any number of files can be specified.
     Options include:
 
         --data                  : The JSON data file
