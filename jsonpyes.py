@@ -3,10 +3,15 @@ from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 import sys
 import subprocess
-import simplejson as json
 import threading
 import linecache
 from contrib.utils import count_file_lines as c_file_lines
+
+try:
+    import simplejson as json
+except ImportError:
+    import json
+
 __author__ = "Alexander Liu"
 
 version = "1.2.1"
