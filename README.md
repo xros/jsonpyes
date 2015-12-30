@@ -17,7 +17,7 @@ Alexander Liu
 
 jsonpyes
 --------
-![Alt](static/snapshot138.png)
+![Alt](static/snapshot139.png)
 
 #### Instructions:
     There are 3 proccesses of importing raw JSON data to ElasticSearch
