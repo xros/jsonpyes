@@ -74,7 +74,8 @@ def show_help():
 
     3) Import after checking successfully with 8 threads
     > $~ jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check --thread 8
-    > Successfully data checked and imported!
+    > All raw JSON data valid!
+    > Successfully data imported!
 
 
     """)
