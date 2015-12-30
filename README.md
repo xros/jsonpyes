@@ -17,7 +17,7 @@ Alexander Liu
 
 jsonpyes
 --------
-![Alt](static/snapshot104.jpg)
+![Alt](static/snapshot136.png)
 
 #### Instructions:
     There are 3 proccesses of importing raw JSON data to ElasticSearch
@@ -27,7 +27,7 @@ jsonpyes
 
 
 ##### 1. Only validating
-* ```python jsonpyes.py --data raw_data.json --check```
+* ```jsonpyes --data raw_data.json --check```
 
 * If the json data file is valid: 
 ![Alt](static/snapshot98.jpg)
@@ -37,8 +37,8 @@ jsonpyes
 
 ##### 2. Only importing without validating
 * Notice: If the raw JSON data file is invalid, ElasticSearch will not import it.
-* ```python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
-* Or enable multi-threads ```python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
+* ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
+* Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
 ![Alt](static/snapshot102.jpg)
 
 ** jsonpyes supports multi-threads when importing data to elasticsearch
@@ -54,7 +54,7 @@ This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 ![Alt](static/snapshot105.jpg)
 
 ##### 3. Both validating and importing
-* ```python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
+* ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
 ![Alt](static/snapshot135.png)
 
 * And it works.
