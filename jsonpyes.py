@@ -65,15 +65,15 @@ def show_help():
     Examples:
 
     1) Only check
-    > $~ python jsonpyes.py --data raw_data.json --check
+    > $~ jsonpyes --data raw_data.json --check
     > All raw JSON data valid!
 
     2) Only import without checking
-    > $~ python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1
+    > $~ jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1
     > Successfully data imported!
 
     3) Import after checking successfully with 8 threads
-    > $~ python jsonpyes.py --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check --thread 8
+    > $~ jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check --thread 8
     > Successfully data checked and imported!
 
 
