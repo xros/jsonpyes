@@ -57,7 +57,7 @@ def show_help():
         --index                 : Index name
         --type                  : Index type
         --import                : Import raw JSON data to ES. This proccess does "--check" and data importing
-        --thread                : Threads amount, default 2. The more threads, the faster when importing or checking
+        --thread                : Threads amount, default 1. The more threads, the faster when importing or checking
         --version               : Prints the version number 
         --help                  : Display this help 
 
@@ -424,6 +424,8 @@ def run():
                 except KeyboardInterrupt:
                     for i in threads:
                         i.stop()
+                    print("Data importing interrupted!")
+                    return
 
             print("Successfully data imported!")
             return
@@ -539,6 +541,8 @@ def run():
                 except KeyboardInterrupt:
                     for i in threads:
                         i.stop()
+                    print("Data importing interrupted!")
+                    return
 
             print("Successfully data imported!")
             return
