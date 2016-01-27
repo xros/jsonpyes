@@ -2,13 +2,19 @@ from distutils.core import setup
 from setuptools import find_packages
 from jsonpyes import version
 
-
 from os import path
+
+# Try to build doc, converting from language markdown to rst using pandoc if it is installed
+import subprocess
+convert_the_doc_command = "pandoc --from=markdown --to=rst --output=README.rst README.md"
+
+result = subprocess.check_output(convert_the_doc_command , shell=True)
+
 
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.md')) as f:
+with open(path.join(here, 'README.rst')) as f:
     long_description = f.read()
 
 
@@ -34,4 +40,4 @@ setup(name='jsonpyes',
         #packages=['contrib', ],
         packages=find_packages(),
         include_package_data=True,
-        )
+)
