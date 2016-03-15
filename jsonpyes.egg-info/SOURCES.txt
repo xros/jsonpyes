@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+README.rst
+jsonpyes
+jsonpyes.py
+setup.cfg
+setup.py
+contrib/__init__.py
+contrib/utils.py
+jsonpyes.egg-info/PKG-INFO
+jsonpyes.egg-info/SOURCES.txt
+jsonpyes.egg-info/dependency_links.txt
+jsonpyes.egg-info/requires.txt
+jsonpyes.egg-info/top_level.txt

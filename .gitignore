@@ -42,7 +42,8 @@ lib64/
 parts/
 sdist/
 var/
-*.egg-info/
+# uncomment the line to enable pip uninstallation
+#*.egg-info/
 .installed.cfg
 *.egg
 # Installer logs
