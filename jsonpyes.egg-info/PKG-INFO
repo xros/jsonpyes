@@ -10,13 +10,15 @@ Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.7
 Description: json-py-es
         ==========
         
-        Alexander Liu \* To import raw JSON data files to ElasticSearch using
-        Python in one line of commands
+        Alexander Liu
+        
+        -  To import raw JSON data files to ElasticSearch using Python in one
+           line of commands
         
         Installation
         ~~~~~~~~~~~~
         
-        -  ``pip install jsonpyes``
+        -  ``pip install jsonpyes`` |Build Status|
         
             In the past we import data in this way. Too many jobs by hands...
             |Alt|
@@ -88,6 +90,8 @@ Description: json-py-es
         Happy hacking!
         ''''''''''''''
         
+        .. |Build Status| image:: https://travis-ci.org/xros/jsonpyes.svg?branch=master
+           :target: https://travis-ci.org/xros/jsonpyes
         .. |Alt| image:: static/snapshot106.jpg
         .. |Alt| image:: static/snapshot98.jpg
         .. |Alt| image:: static/snapshot99.jpg
