@@ -1,13 +1,15 @@
 json-py-es
 ==========
 
+[![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
+
 Alexander Liu
 
 * To import raw JSON data files to ElasticSearch using Python in one line of commands
 
 ### Installation
 
-* ```pip install jsonpyes```  [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
+* ```pip install jsonpyes```  
 
 > In the past we import data in this way. Too many jobs by hands...
 > ![Alt](static/snapshot106.jpg)
