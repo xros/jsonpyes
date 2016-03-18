@@ -39,6 +39,7 @@ with open(path.join(here, 'README.rst')) as f:
 setup(name='jsonpyes',
         version=version,
         author="Alexander Liu",
+        author_email='PGP E6DE7BEA',
         license="GPL V3",
         description="Import JSON raw data to ElasticSearch using Python in one line of commands",
         long_description=long_description,
