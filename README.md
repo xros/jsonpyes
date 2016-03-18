@@ -43,7 +43,7 @@ jsonpyes
 * Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
 ![Alt](static/snapshot102.jpg)
 
-** jsonpyes supports multi-threads when importing data to elasticsearch
+* ```jsonpyes``` supports multi-threads when importing data to elasticsearch
 ![Alt](static/snapshot132.png)
 
 > As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be slightly faster.
