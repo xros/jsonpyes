@@ -4,7 +4,6 @@ json-py-es
 [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
 [![GitHub release](https://img.shields.io/github/release/xros/jsonpyes.svg)](releases)
 [![GitHub license](https://img.shields.io/github/license/xros/jsonpyes.svg)](LICENSE)
-[![Latest Stable Version](https://poser.pugx.org/xros/github/v/stable)](https://packagist.org/packages/xros/github)
 
 Alexander Liu
 
