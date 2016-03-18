@@ -1,7 +1,7 @@
 json-py-es
 ==========
 
-|Build Status| |GitHub release| |GitHub license|
+|Build Status| |GitHub release| |GitHub license| |Latest Stable Version|
 
 Alexander Liu
 
@@ -86,9 +86,11 @@ Happy hacking!
 .. |Build Status| image:: https://travis-ci.org/xros/jsonpyes.svg?branch=master
    :target: https://travis-ci.org/xros/jsonpyes
 .. |GitHub release| image:: https://img.shields.io/github/release/xros/jsonpyes.svg
-   :target: 
+   :target: releases
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
-   :target: 
+   :target: LICENSE
+.. |Latest Stable Version| image:: https://poser.pugx.org/xros/github/v/stable
+   :target: https://packagist.org/packages/xros/github
 .. |Alt| image:: static/snapshot106.jpg
 .. |Alt| image:: static/snapshot98.jpg
 .. |Alt| image:: static/snapshot99.jpg
