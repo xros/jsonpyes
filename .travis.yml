@@ -20,6 +20,16 @@ python:
   #- "3.5-dev" # 3.5 development branch
   #- "nightly" # currently points to 3.6-dev
 # command to install dependencies
-install: "pip install -r requirements.txt"
+install: 
+    "pip install -r requirements.txt"
+    "pip install coveralls"
 # command to run tests
 script: nosetests
+
+# add test from coveralls
+# more infor from https://github.com/coagulant/coveralls-python
+script:
+    coverage run --source=jsonpyes setup.py test
+
+after_success:
+    coveralls
