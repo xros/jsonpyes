@@ -2,6 +2,7 @@ json-py-es
 ==========
 
 [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
+[![GitHub release](https://img.shields.io/github/release/xros/jsonpyes.svg)]()
 
 Alexander Liu
 
