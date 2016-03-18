@@ -86,9 +86,9 @@ Happy hacking!
 .. |Build Status| image:: https://travis-ci.org/xros/jsonpyes.svg?branch=master
    :target: https://travis-ci.org/xros/jsonpyes
 .. |GitHub release| image:: https://img.shields.io/github/release/xros/jsonpyes.svg
-   :target: 
+   :target: releases
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
-   :target: 
+   :target: LICENSE
 .. |Alt| image:: static/snapshot106.jpg
 .. |Alt| image:: static/snapshot98.jpg
 .. |Alt| image:: static/snapshot99.jpg
