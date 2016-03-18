@@ -1,6 +1,8 @@
 json-py-es
 ==========
 
+|Build Status| |GitHub release| |GitHub license|
+
 Alexander Liu
 
 -  To import raw JSON data files to ElasticSearch using Python in one
@@ -9,7 +11,7 @@ Alexander Liu
 Installation
 ~~~~~~~~~~~~
 
--  ``pip install jsonpyes`` |Build Status|
+-  ``pip install jsonpyes``
 
     In the past we import data in this way. Too many jobs by hands...
     |Alt|
@@ -83,6 +85,10 @@ Happy hacking!
 
 .. |Build Status| image:: https://travis-ci.org/xros/jsonpyes.svg?branch=master
    :target: https://travis-ci.org/xros/jsonpyes
+.. |GitHub release| image:: https://img.shields.io/github/release/xros/jsonpyes.svg
+   :target: 
+.. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
+   :target: 
 .. |Alt| image:: static/snapshot106.jpg
 .. |Alt| image:: static/snapshot98.jpg
 .. |Alt| image:: static/snapshot99.jpg
