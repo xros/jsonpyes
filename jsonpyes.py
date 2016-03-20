@@ -14,7 +14,8 @@ except ImportError:
 
 __author__ = "Alexander Liu"
 
-version = "1.2.9"
+
+version = "1.2.13" 
 
 
 """

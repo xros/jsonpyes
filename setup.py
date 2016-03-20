@@ -9,12 +9,15 @@ import subprocess
 import os
 import sys
 
-sys.path.append(os.getcwd())
-from jsonpyes import version
+CUR_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+
+version = "1.2.13"
+
+                                                    
 
 py_version = platform.python_version_tuple()
 
-convert_the_doc_command = "pandoc --from=markdown --to=rst --output=README.rst README.md"
+convert_the_doc_command = "pandoc --from=markdown --to=rst --output=" + os.path.join(CUR_DIR_PATH, "README.rst") + " " + os.path.join(CUR_DIR_PATH, "README.md")
 
 # subprocess has check_output since python 2.7.0+
 if py_version <= (2, 6, 9):
