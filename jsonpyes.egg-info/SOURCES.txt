@@ -3,6 +3,7 @@ MANIFEST.in
 README.md
 README.rst
 jsonpyes
+jsonpyes.py
 setup.cfg
 setup.py
 contrib/__init__.py
