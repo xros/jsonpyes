@@ -1,16 +1,16 @@
 Metadata-Version: 1.1
 Name: jsonpyes
-Version: 1.2.14
+Version: 1.2.18
 Summary: Import JSON raw data to ElasticSearch using Python in one line of commands
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
 Author-email: PGP E6DE7BEA
 License: GPL V3
-Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.14
+Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.18
 Description: json-py-es
         ==========
         
-        |Build Status| |GitHub release| |GitHub license|
+        |Build Status| |GitHub release| |PyPI| |GitHub license|
         
         Alexander Liu
         
@@ -95,9 +95,11 @@ Description: json-py-es
         .. |Build Status| image:: https://travis-ci.org/xros/jsonpyes.svg?branch=master
            :target: https://travis-ci.org/xros/jsonpyes
         .. |GitHub release| image:: https://img.shields.io/github/release/xros/jsonpyes.svg
-           :target: releases
+           :target: https://github.com/xros/jsonpyes/releases
+        .. |PyPI| image:: https://img.shields.io/pypi/dm/jsonpyes.svg
+           :target: https://pypi.python.org/jsonpyes
         .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
-           :target: LICENSE
+           :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
         .. |Alt| image:: static/snapshot106.jpg
         .. |Alt| image:: static/snapshot98.jpg
         .. |Alt| image:: static/snapshot99.jpg
