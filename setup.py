@@ -1,6 +1,5 @@
 from distutils.core import setup 
 from setuptools import find_packages
-from jsonpyes import version
 
 from os import path
 
@@ -8,6 +7,10 @@ from os import path
 import platform
 import subprocess
 import os
+import sys
+
+sys.path.append(os.getcwd())
+from jsonpyes import version
 
 py_version = platform.python_version_tuple()
 
