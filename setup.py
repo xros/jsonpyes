@@ -12,7 +12,7 @@ import sys
 
 CUR_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
-version = "1.2.17"
+version = "1.2.18"
 
                                                     
 
@@ -62,7 +62,7 @@ setup(name='jsonpyes',
         classifiers=[],
         # Make this script executable in command line
         #scripts=['jsonpyes.py'],
-        scripts=['jsonpyes', 'jsonpyes.py'],
+        scripts=['jsonpyes'],
         #packages=['contrib', ],
         packages=find_packages(),
         include_package_data=True,
