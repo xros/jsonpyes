@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 from distutils.core import setup 
 from setuptools import find_packages
 
@@ -11,7 +12,7 @@ import sys
 
 CUR_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
-version = "1.2.13"
+version = "1.2.14"
 
                                                     
 

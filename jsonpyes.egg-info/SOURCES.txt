@@ -5,7 +5,6 @@ README.rst
 jsonpyes
 setup.cfg
 setup.py
-version.txt
 contrib/__init__.py
 contrib/utils.py
 jsonpyes.egg-info/PKG-INFO
