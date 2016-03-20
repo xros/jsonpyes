@@ -12,7 +12,7 @@ import sys
 
 CUR_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
-version = "1.2.16"
+version = "1.2.17"
 
                                                     
 
