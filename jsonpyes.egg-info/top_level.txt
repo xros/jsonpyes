@@ -1,1 +1,1 @@
-contrib
+jsonpyes_contrib
