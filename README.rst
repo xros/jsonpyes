@@ -14,7 +14,7 @@ Installation
 -  ``pip install jsonpyes``
 
     In the past we import data in this way. Too many jobs by hands...
-    |Alt|
+    |before image|
 
     Using ElasticSearch Bulk API to import this data, sometimes ES only
     recognizes data in its API way.
@@ -24,7 +24,7 @@ Installation
 jsonpyes
 --------
 
--  |Alt|
+-  |user interface|
 
 Instructions:
 ^^^^^^^^^^^^^
@@ -41,9 +41,9 @@ Instructions:
 
 -  ``jsonpyes --data raw_data.json --check``
 
--  If the json data file is valid: |Alt|
+-  If the json data file is valid: |json valid|
 
--  If the json data file is invalid: |Alt|
+-  If the json data file is invalid: |json invalid|
 
 2. Only importing without validating
 ''''''''''''''''''''''''''''''''''''
@@ -53,10 +53,10 @@ Instructions:
 -  ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2``
 -  Or enable multi-threads
    ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8``
-   |Alt|
+   |no threads|
 
 -  ``jsonpyes`` supports multi-threads when importing data to
-   elasticsearch |Alt|
+   elasticsearch |muti-threads enabled|
 
     As you can see these two containers have same docs loaded, if we use
     ***--thread 8*** it could be slightly faster. That really depends on
@@ -64,18 +64,18 @@ Instructions:
     2.4Ghz intel i5 Linux x64 laptop system.
 
 -  .. figure:: static/snapshot133.png
-      :alt: Alt
+      :alt: benmarks
 
-      Alt
--  And it works. |Alt|
+      benmarks
+-  And it works. |it works|
 
 3. Both validating and importing
 ''''''''''''''''''''''''''''''''
 
 -  ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check``
-   |Alt|
+   |validating and importing|
 
--  And it works. |Alt|
+-  And it works. |the results|
 
 Happy hacking!
 ''''''''''''''
@@ -88,12 +88,12 @@ Happy hacking!
    :target: https://pypi.python.org/jsonpyes
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
    :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
-.. |Alt| image:: static/snapshot106.jpg
-.. |Alt| image:: static/snapshot139.png
-.. |Alt| image:: static/snapshot98.jpg
-.. |Alt| image:: static/snapshot99.jpg
-.. |Alt| image:: static/snapshot102.jpg
-.. |Alt| image:: static/snapshot132.png
-.. |Alt| image:: static/snapshot105.jpg
-.. |Alt| image:: static/snapshot135.png
-.. |Alt| image:: static/snapshot101.jpg
+.. |before image| image:: static/snapshot106.jpg
+.. |user interface| image:: static/snapshot139.png
+.. |json valid| image:: static/snapshot98.jpg
+.. |json invalid| image:: static/snapshot99.jpg
+.. |no threads| image:: static/snapshot102.jpg
+.. |muti-threads enabled| image:: static/snapshot132.png
+.. |it works| image:: static/snapshot105.jpg
+.. |validating and importing| image:: static/snapshot135.png
+.. |the results| image:: static/snapshot101.jpg

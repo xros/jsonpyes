@@ -15,7 +15,7 @@ Alexander Liu
 * ```pip install jsonpyes```  
 
 > In the past we import data in this way. Too many jobs by hands...
-> ![Alt](static/snapshot106.jpg)
+> ![before image](static/snapshot106.jpg)
 > 
 > Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes data in its API way. 
 > 
@@ -24,7 +24,7 @@ Alexander Liu
 
 jsonpyes
 --------
-* ![Alt](static/snapshot139.png)
+* ![user interface](static/snapshot139.png)
 
 #### Instructions:
     There are 3 proccesses of importing raw JSON data to ElasticSearch
@@ -37,35 +37,35 @@ jsonpyes
 * ```jsonpyes --data raw_data.json --check```
 
 * If the json data file is valid: 
-![Alt](static/snapshot98.jpg)
+![json valid](static/snapshot98.jpg)
 
 * If the json data file is invalid: 
-![Alt](static/snapshot99.jpg)
+![json invalid](static/snapshot99.jpg)
 
 ##### 2. Only importing without validating
 * Notice: If the raw JSON data file is invalid, ElasticSearch will not import it.
 * ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
 * Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
-![Alt](static/snapshot102.jpg)
+![no threads](static/snapshot102.jpg)
 
 * ```jsonpyes``` supports multi-threads when importing data to elasticsearch
-![Alt](static/snapshot132.png)
+![muti-threads enabled](static/snapshot132.png)
 
 > As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be slightly faster.
 That really depends on your computer/server resources.
 This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 
-* ![Alt](static/snapshot133.png)
+* ![benmarks](static/snapshot133.png)
 
 * And it works.
-![Alt](static/snapshot105.jpg)
+![it works](static/snapshot105.jpg)
 
 ##### 3. Both validating and importing
 * ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
-![Alt](static/snapshot135.png)
+![validating and importing](static/snapshot135.png)
 
 * And it works.
-![Alt](static/snapshot101.jpg)
+![the results](static/snapshot101.jpg)
 
 
 
