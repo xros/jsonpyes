@@ -63,7 +63,7 @@ Instructions:
     your computer/server resources. This was tested on a 4GB RAM /
     2.4Ghz intel i5 Linux x64 laptop system.
 
--  .. figure:: static/snapshot133.png
+-  .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot133.png
       :alt: benmarks
 
       benmarks
@@ -88,12 +88,12 @@ Happy hacking!
    :target: https://pypi.python.org/jsonpyes
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
    :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
-.. |before image| image:: static/snapshot106.jpg
-.. |user interface| image:: static/snapshot139.png
-.. |json valid| image:: static/snapshot98.jpg
-.. |json invalid| image:: static/snapshot99.jpg
-.. |no threads| image:: static/snapshot102.jpg
-.. |muti-threads enabled| image:: static/snapshot132.png
-.. |it works| image:: static/snapshot105.jpg
-.. |validating and importing| image:: static/snapshot135.png
-.. |the results| image:: static/snapshot101.jpg
+.. |before image| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg
+.. |user interface| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot139.png
+.. |json valid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg
+.. |json invalid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
+.. |no threads| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg
+.. |muti-threads enabled| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot132.png
+.. |it works| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot105.jpg
+.. |validating and importing| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot135.png
+.. |the results| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg

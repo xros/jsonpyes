@@ -15,7 +15,7 @@ Alexander Liu
 * ```pip install jsonpyes```  
 
 > In the past we import data in this way. Too many jobs by hands...
-> ![before image](static/snapshot106.jpg)
+> ![before image](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg)
 > 
 > Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes data in its API way. 
 > 
@@ -24,7 +24,7 @@ Alexander Liu
 
 jsonpyes
 --------
-* ![user interface](static/snapshot139.png)
+* ![user interface](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot139.png)
 
 #### Instructions:
     There are 3 proccesses of importing raw JSON data to ElasticSearch
@@ -37,35 +37,35 @@ jsonpyes
 * ```jsonpyes --data raw_data.json --check```
 
 * If the json data file is valid: 
-![json valid](static/snapshot98.jpg)
+![json valid](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg)
 
 * If the json data file is invalid: 
-![json invalid](static/snapshot99.jpg)
+![json invalid](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg)
 
 ##### 2. Only importing without validating
 * Notice: If the raw JSON data file is invalid, ElasticSearch will not import it.
 * ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
 * Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
-![no threads](static/snapshot102.jpg)
+![no threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg)
 
 * ```jsonpyes``` supports multi-threads when importing data to elasticsearch
-![muti-threads enabled](static/snapshot132.png)
+![muti-threads enabled](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot132.png)
 
 > As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be slightly faster.
 That really depends on your computer/server resources.
 This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 
-* ![benmarks](static/snapshot133.png)
+* ![benmarks](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot133.png)
 
 * And it works.
-![it works](static/snapshot105.jpg)
+![it works](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot105.jpg)
 
 ##### 3. Both validating and importing
 * ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
-![validating and importing](static/snapshot135.png)
+![validating and importing](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot135.png)
 
 * And it works.
-![the results](static/snapshot101.jpg)
+![the results](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg)
 
 
 
