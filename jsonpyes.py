@@ -5,8 +5,8 @@ import sys
 import subprocess
 import threading
 import linecache
-import contrib
-from contrib.utils import count_file_lines as c_file_lines
+import jsonpyes_contrib
+from jsonpyes_contrib.utils import count_file_lines as c_file_lines
 
 try:
     import simplejson as json
@@ -16,7 +16,7 @@ except ImportError:
 __author__ = "Alexander Liu"
 
 
-version = contrib.__version__
+version = jsonpyes_contrib.__version__
 
 
 """

@@ -24,7 +24,7 @@ Alexander Liu
 
 jsonpyes
 --------
-![Alt](static/snapshot139.png)
+* ![Alt](static/snapshot139.png)
 
 #### Instructions:
     There are 3 proccesses of importing raw JSON data to ElasticSearch
@@ -55,7 +55,7 @@ jsonpyes
 That really depends on your computer/server resources.
 This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 
-![Alt](static/snapshot133.png)
+* ![Alt](static/snapshot133.png)
 
 * And it works.
 ![Alt](static/snapshot105.jpg)

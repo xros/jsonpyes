@@ -46,7 +46,7 @@ def read_file(filename, encoding='utf8'):
 here = os.path.abspath(os.path.dirname(__file__))
 
 # read version number (and other metadata) from package init
-init_fn = os.path.join(here, 'contrib', '__init__.py')
+init_fn = os.path.join(here, 'jsonpyes_contrib', '__init__.py')
 meta = dict(re.findall(r"""__([a-z]+)__ = '([^']+)""", read_file(init_fn)))
 
 # Get the long description from the README file

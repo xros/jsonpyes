@@ -24,10 +24,8 @@ Installation
 jsonpyes
 --------
 
-.. figure:: static/snapshot139.png
-   :alt: Alt
+-  |Alt|
 
-   Alt
 Instructions:
 ^^^^^^^^^^^^^
 
@@ -65,11 +63,10 @@ Instructions:
     your computer/server resources. This was tested on a 4GB RAM /
     2.4Ghz intel i5 Linux x64 laptop system.
 
-.. figure:: static/snapshot133.png
-   :alt: Alt
+-  .. figure:: static/snapshot133.png
+      :alt: Alt
 
-   Alt
-
+      Alt
 -  And it works. |Alt|
 
 3. Both validating and importing
@@ -92,6 +89,7 @@ Happy hacking!
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
    :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
 .. |Alt| image:: static/snapshot106.jpg
+.. |Alt| image:: static/snapshot139.png
 .. |Alt| image:: static/snapshot98.jpg
 .. |Alt| image:: static/snapshot99.jpg
 .. |Alt| image:: static/snapshot102.jpg
