@@ -5,6 +5,7 @@ import sys
 import subprocess
 import threading
 import linecache
+import contrib
 from contrib.utils import count_file_lines as c_file_lines
 
 try:
@@ -15,7 +16,7 @@ except ImportError:
 __author__ = "Alexander Liu"
 
 
-version = "1.2.18" 
+version = contrib.__version__
 
 
 """
