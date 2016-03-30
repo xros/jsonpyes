@@ -59,14 +59,24 @@ Instructions:
    elasticsearch |muti-threads enabled|
 
     As you can see these two containers have same docs loaded, if we use
-    ***--thread 8*** it could be slightly faster. That really depends on
-    your computer/server resources. This was tested on a 4GB RAM /
-    2.4Ghz intel i5 Linux x64 laptop system.
+    ***--thread 8*** it could be several times faster, usually 5 to 10
+    times faster. That really depends on your computer/server resources.
+    This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop
+    system.
 
--  .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot133.png
-      :alt: benmarks
+-  No multi-threads
 
-      benmarks
+   .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot237.png
+      :alt: benchmarks
+
+      benchmarks
+-  With 8 threads and ``jsonpyes`` cuts files into pieces, then
+   destributes to workers fairly
+
+   .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png
+      :alt: use helpers.bulk API with multi-threads
+
+      use helpers.bulk API with multi-threads
 -  And it works. |it works|
 
 3. Both validating and importing
@@ -89,7 +99,7 @@ Happy hacking!
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
    :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
 .. |before image| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg
-.. |user interface| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot139.png
+.. |user interface| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png
 .. |json valid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg
 .. |json invalid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
 .. |no threads| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg

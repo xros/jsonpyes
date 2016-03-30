@@ -24,7 +24,7 @@ Alexander Liu
 
 jsonpyes
 --------
-* ![user interface](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot139.png)
+* ![user interface](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png)
 
 #### Instructions:
     There are 3 proccesses of importing raw JSON data to ElasticSearch
@@ -51,11 +51,17 @@ jsonpyes
 * ```jsonpyes``` supports multi-threads when importing data to elasticsearch
 ![muti-threads enabled](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot132.png)
 
-> As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be slightly faster.
+> As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be several times faster, usually 5 to 10 times faster.
 That really depends on your computer/server resources.
 This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 
-* ![benmarks](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot133.png)
+* No multi-threads 
+
+    ![benchmarks](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot237.png)
+
+* With 8 threads and `jsonpyes` cuts files into pieces, then destributes to workers fairly 
+
+    ![use helpers.bulk API with multi-threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png)
 
 * And it works.
 ![it works](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot105.jpg)
