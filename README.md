@@ -59,7 +59,7 @@ This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 
     ![benchmarks](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot237.png)
 
-* With 8 threads and `jsonpyes` cuts files into pieces, then destributes to a worker fairly 
+* With 8 threads and `jsonpyes` cuts files into pieces, then destributes to workers fairly 
 
     ![use helpers.bulk API with multi-threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png)
 
