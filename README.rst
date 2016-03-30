@@ -71,7 +71,7 @@ Instructions:
 
       benchmarks
 -  With 8 threads and ``jsonpyes`` cuts files into pieces, then
-   destributes to a worker fairly
+   destributes to workers fairly
 
    .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png
       :alt: use helpers.bulk API with multi-threads
