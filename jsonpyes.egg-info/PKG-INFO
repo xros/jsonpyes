@@ -5,7 +5,7 @@ Summary: Import JSON raw data to ElasticSearch using Python in one line of comma
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
 Author-email: PGP E6DE7BEA
-License: GPL V3
+License: FTE V1
 Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.23
 Description: json-py-es
         ==========
