@@ -1,4 +1,6 @@
 #!/usr/bin/env python2
+# encoding: utf-8
+
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 import sys
@@ -7,6 +9,8 @@ import threading
 import linecache
 import jsonpyes_contrib
 from jsonpyes_contrib.utils import count_file_lines as c_file_lines
+import logging
+import time
 
 try:
     import simplejson as json
@@ -27,6 +31,8 @@ Instructions:
     3. After validating successfully, then import data to ElasticSearch
 """
 
+es = Elasticsearch(['http://localhost:9200'], verify_certs=True)
+
 def show_version():
     print(version)
 
@@ -39,7 +45,7 @@ def show_help():
         / /_/ /___/ / /_/ / /|  /_____/ ____/ / /_____/ /___ ___/ /
         \____//____/\____/_/ |_/     /_/     /_/     /_____//____/
         
-                        Import JSON to ElasticSearch using Python
+                        Import raw JSON to ElasticSearch in one line of commands
                                                            -- Alexander Liu
 
                                                            """
@@ -63,6 +69,10 @@ def show_help():
         --version               : Prints the version number 
         --help                  : Display this help 
 
+    Notice:
+
+        It's recommended that you use multi-threads when importing data. Because it's way faster.
+
 
     Examples:
 
@@ -82,11 +92,9 @@ def show_help():
 
     """)
 
-
-
 def validate_json_data(json_file=""):
     """
-    To validate whether the JSON data file is fully a JSON file without any format validation
+    To validate whether the JSON data file is fully a JSON file without any format invalidation
     """
     if str(json_file)=="":
         raise ValueError("No JSON file was input\n")
@@ -109,6 +117,65 @@ def validate_json_data(json_file=""):
                         pass
             # assume all JSON valid
             return True
+
+
+def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop_line=0, es=es, index="", doc_type=""):
+    # NOTICE: the 'start_line' and 'stop_line' are all included. 'stop_line' can not be omitted.
+    actions = []
+    try_times = 0
+    es = es
+    # Using linecache to read big data in RAM
+    for i in range(start_line, stop_line + 1):
+        # Enhancement: This version of jsonpyes use `elastisearch.helpers.bulk`. Thanks to suggestion from piterjoin
+        row = linecache.getline(data, i)
+        try:
+            action = {
+                "_index": index,
+                "_type": doc_type,
+                "_source": json.loads(row)
+            }
+        except Exception, e:
+            logging.warning(str(e))
+            continue
+
+        actions.append(action)
+
+        # https://elasticsearch-py.readthedocs.org/en/master/helpers.html?highlight=helpers#module-elasticsearch.helpers
+        # In some cases, the size of 1000 docs can be at around 10 MB. And they are stored in RAM
+
+        if len(actions) >= 5000:
+            # try serveral times if ES rejects, is busy or down
+            while try_times < 5:
+                try:
+                    # single chunk_bytes max upto 200 MB assumption
+                    helpers.bulk(es, actions)
+                    try_times = 0
+                    break
+                except Exception, e:
+                    try_times = try_times + 1
+                    logging.warning("Can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e))
+                    # wait for the ElasticSearch to response
+                    time.sleep(5)
+            if try_times >= 5:
+                msg = "After trying " + str(try_times) + \
+                    " times. It still can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e)
+                logging.error(msg)
+                try_times = 0
+
+            # delete previous docs
+            del actions[0:len(actions)]
+
+    # if we have leftovers, finish them
+    if len(actions) > 0:
+        try:
+            helpers.bulk(es, actions)
+        except Exception, e:
+            logging.warning("Can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e))
+        # delete previous docs
+        del actions[0:len(actions)]
+
+    # terminate this job
+    return
 
 
 class StoppableThread(threading.Thread):
@@ -397,23 +464,14 @@ def run():
 
 
 
-                def worker_import_to_es_for_threading(data=data, start_line=0, stop_line=0):
-                    # NOTICE: the 'start_line' and 'stop_line' are all included. 'stop_line' can not be omitted.
-                    es = Elasticsearch([bulk], verify_certs=True)
-                    # Using linecache to read big data in RAM
-                    for i in range(start_line, stop_line + 1):
-                        es.index(
-                                index=index, doc_type=doc_type, 
-                                #id=2, 
-                                body=json.loads(linecache.getline(data, i))
-                        )
-
 
                 
                 threads = []
                 for i in start_stop_line_list:
                     #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
-                    t = threading.Thread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
+                    t = threading.Thread(target=worker_import_to_es_for_threading, 
+                                         args=(data, i['start'], i['stop'], Elasticsearch([bulk], verify_certs=True), index, doc_type, )
+                    )
                     threads.append(t)
                     t.start()
                     t.join()
@@ -421,12 +479,15 @@ def run():
 
                 # stop all threads if interrupts
                 try:
-                    while len(threading.enumerate()):
+                    while len(threading.enumerate()) > 1:
                         pass
+                    print("Successfully data imported!")
+                    return
                 except KeyboardInterrupt:
-                    for i in threads:
-                        i.stop()
+                    # for i in threads:
+                        # i.stop()
                     print("Data importing interrupted!")
+                    exit(0)
                     return
 
             print("Successfully data imported!")
@@ -514,23 +575,14 @@ def run():
 
 
 
-                def worker_import_to_es_for_threading(data=data, start_line=0, stop_line=0):
-                    # NOTICE: the 'start_line' and 'stop_line' are all included. 'stop_line' can not be omitted.
-                    es = Elasticsearch([bulk], verify_certs=True)
-                    # Using linecache to read big data in RAM
-                    for i in range(start_line, stop_line + 1):
-                        es.index(
-                                index=index, doc_type=doc_type, 
-                                #id=2, 
-                                body=json.loads(linecache.getline(data, i))
-                        )
-
 
                 
                 threads = []
                 for i in start_stop_line_list:
                     #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
-                    t = threading.Thread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
+                    t = threading.Thread(target=worker_import_to_es_for_threading, 
+                                         args=(data, i['start'], i['stop'], Elasticsearch([bulk], verify_certs=True), index, doc_type, )
+                    )
                     threads.append(t)
                     t.start()
                     t.join()
@@ -538,12 +590,17 @@ def run():
 
                 # stop all threads if interrupts
                 try:
-                    while len(threading.enumerate()):
+                    # there is at least one main threading for all threadings
+                    while len(threading.enumerate()) > 1:
                         pass
+                    print("Successfully data imported!")
+                    return
                 except KeyboardInterrupt:
-                    for i in threads:
-                        i.stop()
+                    print(len(threading.enumerate()))
+                    # for i in threads:
+                        # i.stop()
                     print("Data importing interrupted!")
+                    exit(0)
                     return
 
             print("Successfully data imported!")
