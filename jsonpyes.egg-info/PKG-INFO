@@ -65,13 +65,7 @@ Description: json-py-es
            |no threads|
         
         -  ``jsonpyes`` supports multi-threads when importing data to
-           elasticsearch |muti-threads enabled|
-        
-            As you can see these two containers have same docs loaded, if we use
-            ***--thread 8*** it could be several times faster, usually 5 to 10
-            times faster. That really depends on your computer/server resources.
-            This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop
-            system.
+           elasticsearch
         
         -  No multi-threads
         
@@ -86,6 +80,13 @@ Description: json-py-es
               :alt: use helpers.bulk API with multi-threads
         
               use helpers.bulk API with multi-threads
+        
+            As you can see these two containers have same docs loaded, if we use
+            ***--thread 8*** it could be several times faster, usually 5 to 10
+            times faster. That really depends on your computer/server resources.
+            This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop
+            system.
+        
         -  And it works. |it works|
         
         3. Both validating and importing
@@ -112,7 +113,6 @@ Description: json-py-es
         .. |json valid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg
         .. |json invalid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
         .. |no threads| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg
-        .. |muti-threads enabled| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot132.png
         .. |it works| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot105.jpg
         .. |validating and importing| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot135.png
         .. |the results| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg
