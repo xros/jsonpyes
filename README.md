@@ -3,18 +3,19 @@ json-py-es
 
 [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
 [![GitHub release](https://img.shields.io/github/release/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/releases)
-[![PyPI](https://img.shields.io/pypi/dm/jsonpyes.svg)](https://pypi.python.org/jsonpyes)
+[![PyPI](https://img.shields.io/pypi/dm/jsonpyes.svg)](https://pypi.python.org/pypi/jsonpyes)
 [![GitHub license](https://img.shields.io/github/license/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/blob/master/LICENSE)
 
 Alexander Liu
 
-* To import raw JSON data files to ElasticSearch using Python in one line of commands
+* To import raw JSON data files to ElasticSearch in one line of commands
 
 ### Installation
 
 * ```pip install jsonpyes```  
 
 > In the past we import data in this way. Too many jobs by hands...
+> 
 > ![before image](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg)
 > 
 > Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes data in its API way. 

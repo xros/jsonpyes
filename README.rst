@@ -5,8 +5,8 @@ json-py-es
 
 Alexander Liu
 
--  To import raw JSON data files to ElasticSearch using Python in one
-   line of commands
+-  To import raw JSON data files to ElasticSearch in one line of
+   commands
 
 Installation
 ~~~~~~~~~~~~
@@ -14,8 +14,11 @@ Installation
 -  ``pip install jsonpyes``
 
     In the past we import data in this way. Too many jobs by hands...
-    |before image|
 
+    .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg
+       :alt: before image
+
+       before image
     Using ElasticSearch Bulk API to import this data, sometimes ES only
     recognizes data in its API way.
 
@@ -96,10 +99,9 @@ Happy hacking!
 .. |GitHub release| image:: https://img.shields.io/github/release/xros/jsonpyes.svg
    :target: https://github.com/xros/jsonpyes/releases
 .. |PyPI| image:: https://img.shields.io/pypi/dm/jsonpyes.svg
-   :target: https://pypi.python.org/jsonpyes
+   :target: https://pypi.python.org/pypi/jsonpyes
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
    :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
-.. |before image| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg
 .. |user interface| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png
 .. |json valid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg
 .. |json invalid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
