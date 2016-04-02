@@ -15,7 +15,6 @@ Alexander Liu
 * ```pip install jsonpyes```  
 
 > In the past we import data in this way. Too many jobs by hands...
-> 
 > ![before image](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg)
 > 
 > Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes data in its API way. 
