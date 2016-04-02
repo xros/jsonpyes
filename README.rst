@@ -13,14 +13,6 @@ Installation
 
 -  ``pip install jsonpyes``
 
-    In the past we import data in this way. Too many jobs by hands...
-    |before image|
-
-    Using ElasticSearch Bulk API to import this data, sometimes ES only
-    recognizes data in its API way.
-
-    But now let ``json-py-es`` glue them all.
-
 jsonpyes
 --------
 
@@ -35,6 +27,20 @@ Instructions:
     1. Only validating raw JSON data
     2. Without validating ,just import data to ElasticSearch
     3. After validating successfully, then import data to ElasticSearch
+
+Comparing to old-fashionable
+----------------------------
+
+In the past we import data in this way. Too many jobs by hands...
+
+.. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg
+   :alt: before image
+
+   before image
+Using ElasticSearch Bulk API to import this data, sometimes ES only
+recognizes data in its API way.
+
+But now let ``json-py-es`` glue them all.
 
 1. Only validating
 ''''''''''''''''''
@@ -99,7 +105,6 @@ Happy hacking!
    :target: https://pypi.python.org/pypi/jsonpyes
 .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
    :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
-.. |before image| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg
 .. |user interface| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png
 .. |json valid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg
 .. |json invalid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg

@@ -199,7 +199,7 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
     # terminate this job
     return
 
-def return_start_stop_for_multi_thread_in_list(lines=0, thread_amount=1):
+def new_return_start_stop_for_multi_thread_in_list(lines=0, thread_amount=1):
     """Return a list
     Return lines to read for each thread equally
     for example. 37 lines, 4 threads
@@ -228,47 +228,24 @@ def return_start_stop_for_multi_thread_in_list(lines=0, thread_amount=1):
     #
 
     start_stop_line_list = []
+    each_has = lines / thread_amount 
+    # last_remains = lines - (thread_amount * each_has)
     last_remains = lines % thread_amount                        # 17 % 4 -> 1
     
-    # for example if lines -> 17
-    if last_remains:
-        # entend the lines to ideally perfect
-        fair_average = (lines + thread_amount - last_remains) / thread_amount           # ( 17 + 4 - 1 ) / 4 = 5
-    
-    
-        # dump 'start' and 'stop' 
-        for i in range(thread_amount):
-    
-                # if has last_remains
-                if i != range(thread_amount)[-1]:
-                    start_stop_line_list.append( 
-                            {
-                                "start": i*fair_average + 1,            # line includes 1
-                                "stop": ( i+1 )*fair_average            # line includes 5
-                    })
-                else:
-                    start_stop_line_list.append( 
-                            {
-                                "start": i*fair_average + 1,            # line includes 16
-                                "stop": lines                           # line includes 17
-                    })
-    
-    
-    # for example if lines -> 20
-    else:
-        # dump 'start' and 'stop' 
-        for i in range(thread_amount):
-    
-            fair_average = lines / thread_amount                                            # 20 / 4 = 5
-    
-            start_stop_line_list.append( 
-                    {
-                        "start": i*fair_average + 1,                # line includes 16
-                        "stop": ( i+1 )*fair_average                # line includes 20
-            })
-    
-    return start_stop_line_list
+    for t in range(thread_amount):
+        start_stop_line_list.append(
+            {
+                "start": each_has * t + 1,
+                "stop": each_has * ( t + 1)
+            }
+        )
+    if last_remains > 0:
+        start_stop_line_list[-1] = {
+            "start": each_has * (thread_amount - 1) + 1,
+            "stop": lines
+        }
 
+    return start_stop_line_list
 
 
 
@@ -505,7 +482,7 @@ def run():
                         )
             else:
                 # calculate each thread reads how many lines
-                start_stop_line_list = return_start_stop_for_multi_thread_in_list(lines=lines, thread_amount=thread_amount)
+                start_stop_line_list = new_return_start_stop_for_multi_thread_in_list(lines=lines, thread_amount=thread_amount)
 
                 threads = []
                 for i in start_stop_line_list:
@@ -564,7 +541,7 @@ def run():
                 return
             else:
                 # calculate each thread reads how many lines
-                start_stop_line_list = return_start_stop_for_multi_thread_in_list(lines=lines, thread_amount=thread_amount)
+                start_stop_line_list = new_return_start_stop_for_multi_thread_in_list(lines=lines, thread_amount=thread_amount)
 
                 threads = []
                 for i in start_stop_line_list:

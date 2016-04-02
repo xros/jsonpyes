@@ -14,13 +14,6 @@ Alexander Liu
 
 * ```pip install jsonpyes```  
 
-> In the past we import data in this way. Too many jobs by hands...
-> ![before image](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg)
-> 
-> Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes data in its API way. 
-> 
-> But now let `json-py-es` glue them all.
-
 
 jsonpyes
 --------
@@ -31,6 +24,17 @@ jsonpyes
     1. Only validating raw JSON data
     2. Without validating ,just import data to ElasticSearch
     3. After validating successfully, then import data to ElasticSearch
+
+Comparing to old-fashionable
+------
+
+In the past we import data in this way. Too many jobs by hands...
+
+![before image](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg)
+
+Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes data in its API way. 
+
+But now let `json-py-es` glue them all.
 
 
 ##### 1. Only validating
@@ -73,5 +77,11 @@ This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 ![the results](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg)
 
 
+Reference
+---------
+* Algorithm handwritting
+
+![handwritting](http://i.imgur.com/fgm1Mxt.jpg?1)
 
 ##### Happy hacking!
+
