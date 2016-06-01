@@ -40,28 +40,35 @@ Using ElasticSearch Bulk API to import this data, sometimes ES only recognizes d
 But now let `json-py-es` glue them all.
 
 
-##### 1. Only validating
+#### Functions included
+
+##### 1. Validating JSON format data
 * ```jsonpyes --data raw_data.json --check```
 
 * If the json data file is valid: 
+
 ![json valid](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg)
 
 * If the json data file is invalid: 
+
 ![json invalid](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg)
 
 ##### 2. Only importing without validating
-* Notice: If the raw JSON data file is invalid, ElasticSearch will not import it.
 * ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
+* Notice: If the raw JSON data file is invalid, `jsonpyes` will not import it.
 * Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
 ![no threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg)
 
 * ```jsonpyes``` supports multi-threads when importing data to elasticsearch
 
-* No multi-threads 
+
+##### Multi-threads comparison
+
+- No multi-threads 
 
     ![benchmarks](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot237.png)
 
-* With 8 threads and `jsonpyes` cuts files into pieces, then destributes to workers fairly 
+- With 8 threads and `jsonpyes` cuts files into pieces, then destributes to workers fairly 
 
     ![use helpers.bulk API with multi-threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png)
 
