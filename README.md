@@ -12,7 +12,7 @@ Alexander Liu
 
 ![jsonpyes diagram](static/jsonpyes_data_processing_diagram.png)
 
-Very fast -- 5 to 10 times faster than a single threads when processing big data.
+Very fast -- 5 to 10 times faster when processing big data.
 
 
 ### Installation
