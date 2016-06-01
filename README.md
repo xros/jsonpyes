@@ -15,12 +15,15 @@ Alexander Liu
 
 ### Installation
 
-* ```pip install jsonpyes```  
+```pip install jsonpyes```  
+
+Before using `pip` to install `jsonpyes`, firstly you need to install `python-pip` on your system. ( Supports Python2.6, Python2.7 )
 
 
 jsonpyes
 --------
-* ![user interface](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png)
+
+![user interface](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png)
 
 #### Instructions:
     There are 3 proccesses of importing raw JSON data to ElasticSearch
