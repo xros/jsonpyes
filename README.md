@@ -37,23 +37,28 @@ Functions included
 ------------------
 
 ##### 1. Validating JSON format data
-* ```jsonpyes --data raw_data.json --check```
 
-* If the json data file is valid: 
+```jsonpyes --data raw_data.json --check```
+
+If the json data file is valid: 
 
 ![json valid](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg)
 
-* If the json data file is invalid: 
+If the json data file is invalid: 
 
 ![json invalid](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg)
 
 ##### 2. Only importing without validating
-* ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
-* Notice: If the raw JSON data file is invalid, `jsonpyes` will not import it.
-* Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
+
+```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2```
+
+Notice: If the raw JSON data file is invalid, `jsonpyes` will not import it.
+
+Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
+
 ![no threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg)
 
-* ```jsonpyes``` supports multi-threads when importing data to elasticsearch
+```jsonpyes``` supports multi-threads when importing data to elasticsearch
 
 
 ##### Multi-threads comparison
@@ -67,17 +72,21 @@ Functions included
     ![use helpers.bulk API with multi-threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png)
 
 > As you can see these two containers have same docs loaded, if we use **_--thread 8_** it could be several times faster, usually 5 to 10 times faster.
-That really depends on your computer/server resources.
+> That really depends on your computer/server resources.
 This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop system.
 
-* And it works.
+And it works.
+
 ![it works](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot105.jpg)
 
 ##### 3. Both validating and importing
-* ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
+
+```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check```
+
 ![validating and importing](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot135.png)
 
-* And it works.
+And it works.
+
 ![the results](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg)
 
 
@@ -88,4 +97,3 @@ Reference
 ![handwritting](http://i.imgur.com/fgm1Mxt.jpg?1)
 
 ##### Happy hacking!
-
