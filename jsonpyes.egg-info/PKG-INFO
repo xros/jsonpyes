@@ -1,12 +1,12 @@
 Metadata-Version: 1.1
 Name: jsonpyes
-Version: 1.2.26
+Version: 1.2.27
 Summary: Import JSON raw data to ElasticSearch using Python in one line of commands
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
 Author-email: PGP E6DE7BEA
 License: FTE V1
-Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.26
+Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.27
 Description: json-py-es
         ==========
         
@@ -103,6 +103,15 @@ Description: json-py-es
         
         -  And it works. |the results|
         
+        Reference
+        ---------
+        
+        -  Algorithm handwritting
+        
+        .. figure:: http://i.imgur.com/fgm1Mxt.jpg?1
+           :alt: handwritting
+        
+           handwritting
         Happy hacking!
         ''''''''''''''
         

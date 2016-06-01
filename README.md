@@ -10,6 +10,9 @@ Alexander Liu
 
 * To import raw JSON data files to ElasticSearch in one line of commands
 
+![jsonpyes diagram](static/jsonpyes_data_processing_diagram.png)
+
+
 ### Installation
 
 * ```pip install jsonpyes```  

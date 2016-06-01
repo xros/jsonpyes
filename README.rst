@@ -94,6 +94,15 @@ But now let ``json-py-es`` glue them all.
 
 -  And it works. |the results|
 
+Reference
+---------
+
+-  Algorithm handwritting
+
+.. figure:: http://i.imgur.com/fgm1Mxt.jpg?1
+   :alt: handwritting
+
+   handwritting
 Happy hacking!
 ''''''''''''''
 
