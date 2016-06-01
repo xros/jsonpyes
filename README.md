@@ -64,11 +64,11 @@ But now let `json-py-es` glue them all.
 
 ##### Multi-threads comparison
 
-- No multi-threads 
+1. No multi-threads 
 
     ![benchmarks](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot237.png)
 
-- With 8 threads and `jsonpyes` cuts files into pieces, then destributes to workers fairly 
+2. With 8 threads and `jsonpyes` cuts files into pieces, then destributes to workers fairly 
 
     ![use helpers.bulk API with multi-threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png)
 
