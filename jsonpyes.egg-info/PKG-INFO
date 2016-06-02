@@ -1,12 +1,12 @@
 Metadata-Version: 1.1
 Name: jsonpyes
-Version: 1.2.23
+Version: 1.2.28
 Summary: Import JSON raw data to ElasticSearch using Python in one line of commands
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
 Author-email: PGP E6DE7BEA
 License: FTE V1
-Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.23
+Download-URL: https://github.com/xros/jsonpyes/tarball/1.2.28
 Description: json-py-es
         ==========
         
@@ -14,27 +14,31 @@ Description: json-py-es
         
         Alexander Liu
         
-        -  To import raw JSON data files to ElasticSearch using Python in one
-           line of commands
+        -  To import raw JSON data files to ElasticSearch in one line of
+           commands
+        
+        .. figure:: static/jsonpyes_data_processing_diagram.png
+           :alt: jsonpyes diagram
+        
+           jsonpyes diagram
+        Very fast -- 5 to 10 times faster when processing big data.
         
         Installation
         ~~~~~~~~~~~~
         
-        -  ``pip install jsonpyes``
+        ``pip install jsonpyes``
         
-            In the past we import data in this way. Too many jobs by hands...
-            |before image|
-        
-            Using ElasticSearch Bulk API to import this data, sometimes ES only
-            recognizes data in its API way.
-        
-            But now let ``json-py-es`` glue them all.
+            **Notice**: Before using ``pip`` to install ``jsonpyes``, firstly
+            you need to install ``python-pip`` on your system. ( Supports
+            Python2.6, Python2.7 )
         
         jsonpyes
         --------
         
-        -  |user interface|
+        .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png
+           :alt: user interface
         
+           user interface
         Instructions:
         ^^^^^^^^^^^^^
         
@@ -45,27 +49,59 @@ Description: json-py-es
             2. Without validating ,just import data to ElasticSearch
             3. After validating successfully, then import data to ElasticSearch
         
-        1. Only validating
-        ''''''''''''''''''
+        Functions included
+        ------------------
         
-        -  ``jsonpyes --data raw_data.json --check``
+        1. Validating JSON format data
+        ''''''''''''''''''''''''''''''
         
-        -  If the json data file is valid: |json valid|
+        ``jsonpyes --data raw_data.json --check``
         
-        -  If the json data file is invalid: |json invalid|
+        If the json data file is valid:
         
+        .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg
+           :alt: json valid
+        
+           json valid
+        If the json data file is invalid:
+        
+        .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
+           :alt: json invalid
+        
+           json invalid
         2. Only importing without validating
         ''''''''''''''''''''''''''''''''''''
         
-        -  Notice: If the raw JSON data file is invalid, ElasticSearch will not
-           import it.
-        -  ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2``
-        -  Or enable multi-threads
-           ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8``
-           |no threads|
+        ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2``
         
-        -  ``jsonpyes`` supports multi-threads when importing data to
-           elasticsearch |muti-threads enabled|
+        Notice: If the raw JSON data file is invalid, ``jsonpyes`` will not
+        import it.
+        
+        Or enable multi-threads
+        ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8``
+        
+        .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg
+           :alt: no threads
+        
+           no threads
+        ``jsonpyes`` supports multi-threads when importing data to elasticsearch
+        
+        Multi-threads comparison
+        ''''''''''''''''''''''''
+        
+        1. No multi-threads
+        
+           .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot237.png
+              :alt: benchmarks
+        
+              benchmarks
+        2. With 8 threads and ``jsonpyes`` cuts files into pieces, then
+           destributes to workers fairly
+        
+           .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png
+              :alt: use helpers.bulk API with multi-threads
+        
+              use helpers.bulk API with multi-threads
         
             As you can see these two containers have same docs loaded, if we use
             ***--thread 8*** it could be several times faster, usually 5 to 10
@@ -73,29 +109,36 @@ Description: json-py-es
             This was tested on a 4GB RAM / 2.4Ghz intel i5 Linux x64 laptop
             system.
         
-        -  No multi-threads
+        And it works.
         
-           .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot237.png
-              :alt: benchmarks
+        .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot105.jpg
+           :alt: it works
         
-              benchmarks
-        -  With 8 threads and ``jsonpyes`` cuts files into pieces, then
-           destributes to workers fairly
-        
-           .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot235.png
-              :alt: use helpers.bulk API with multi-threads
-        
-              use helpers.bulk API with multi-threads
-        -  And it works. |it works|
-        
+           it works
         3. Both validating and importing
         ''''''''''''''''''''''''''''''''
         
-        -  ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check``
-           |validating and importing|
+        ``jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex1 --type mytype1 --check``
         
-        -  And it works. |the results|
+        .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot135.png
+           :alt: validating and importing
         
+           validating and importing
+        And it works.
+        
+        .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg
+           :alt: the results
+        
+           the results
+        Reference
+        ---------
+        
+        -  Algorithm handwritting
+        
+        .. figure:: http://i.imgur.com/fgm1Mxt.jpg?1
+           :alt: handwritting
+        
+           handwritting
         Happy hacking!
         ''''''''''''''
         
@@ -104,18 +147,9 @@ Description: json-py-es
         .. |GitHub release| image:: https://img.shields.io/github/release/xros/jsonpyes.svg
            :target: https://github.com/xros/jsonpyes/releases
         .. |PyPI| image:: https://img.shields.io/pypi/dm/jsonpyes.svg
-           :target: https://pypi.python.org/jsonpyes
+           :target: https://pypi.python.org/pypi/jsonpyes
         .. |GitHub license| image:: https://img.shields.io/github/license/xros/jsonpyes.svg
            :target: https://github.com/xros/jsonpyes/blob/master/LICENSE
-        .. |before image| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot106.jpg
-        .. |user interface| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot236.png
-        .. |json valid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot98.jpg
-        .. |json invalid| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
-        .. |no threads| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg
-        .. |muti-threads enabled| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot132.png
-        .. |it works| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot105.jpg
-        .. |validating and importing| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot135.png
-        .. |the results| image:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg
         
 Keywords: elasticsearch,json,json2es,jsonpyes
 Platform: Unix

@@ -199,6 +199,57 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
     # terminate this job
     return
 
+def new_return_start_stop_for_multi_thread_in_list(lines=0, thread_amount=1):
+    """Return a list
+    Return lines to read for each thread equally
+    for example. 37 lines, 4 threads
+
+    [
+        {"start": 1, "stop": 10},
+        {"start": 11, "stop": 20},
+        {"start": 21, "stop": 30},
+        {"start": 31, "stop": 37}
+    ]
+
+    # start from line 1, ends at line 37 (includes line 37 in data file)
+
+    """
+
+
+    # lets assume if there were 17 lines and 4 threads, 
+    # thread (1)(2)(3) can have 5 job tasks maximumly. thread (4) only has 2 job tasks
+    #
+    # their job list:
+    #               iter 0        iter 1             iter 2            iter 3
+    #               thread 1      thread 2           thread 3          thread 4
+    # line/job num  1,2,3,4,5     6,7,8,9,10         11,12,13,14,15    16,17
+    #
+    # iter means iteration
+    #
+
+    start_stop_line_list = []
+    each_has = lines / thread_amount 
+    # last_remains = lines - (thread_amount * each_has)
+    last_remains = lines % thread_amount                        # 17 % 4 -> 1
+    
+    for t in range(thread_amount):
+        start_stop_line_list.append(
+            {
+                "start": each_has * t + 1,
+                "stop": each_has * ( t + 1)
+            }
+        )
+    if last_remains > 0:
+        start_stop_line_list[-1] = {
+            "start": each_has * (thread_amount - 1) + 1,
+            "stop": lines
+        }
+
+    return start_stop_line_list
+
+
+
+
 
 class StoppableThread(threading.Thread):
     """Thread class with a stop() method. The thread itself has to check
@@ -430,64 +481,9 @@ def run():
                             body=json.loads(line)
                         )
             else:
+                # calculate each thread reads how many lines
+                start_stop_line_list = new_return_start_stop_for_multi_thread_in_list(lines=lines, thread_amount=thread_amount)
 
-                # lets assume if there were 17 lines and 4 threads, 
-                # thread (1)(2)(3) can have 5 job tasks maximumly. thread (4) only has 2 job tasks
-                #
-                # their job list:
-                #               iter 0        iter 1             iter 2            iter 3
-                #               thread 1      thread 2           thread 3          thread 4
-                # line/job num  1,2,3,4,5     6,7,8,9,10         11,12,13,14,15    16,17
-                #
-                # iter means iteration
-                #
-
-                start_stop_line_list = []
-                last_remains = lines % thread_amount                        # 17 % 4 -> 1
-
-                # for example if lines -> 17
-                if last_remains:
-                    # entend the lines to ideally perfect
-                    fair_average = (lines + thread_amount - last_remains) / thread_amount           # ( 17 + 4 - 1 ) / 4 = 5
-
-
-                    # dump 'start' and 'stop' 
-                    for i in range(thread_amount):
-
-                            # if has last_remains
-                            if i != range(thread_amount)[-1]:
-                                start_stop_line_list.append( 
-                                        {
-                                            "start": i*fair_average + 1,            # line includes 1
-                                            "stop": ( i+1 )*fair_average            # line includes 5
-                                })
-                            else:
-                                start_stop_line_list.append( 
-                                        {
-                                            "start": i*fair_average + 1,            # line includes 16
-                                            "stop": lines                           # line includes 17
-                                })
-
-
-                # for example if lines -> 20
-                else:
-                    # dump 'start' and 'stop' 
-                    for i in range(thread_amount):
-
-                        fair_average = lines / thread_amount                                            # 20 / 4 = 5
-
-                        start_stop_line_list.append( 
-                                {
-                                    "start": i*fair_average + 1,                # line includes 16
-                                    "stop": ( i+1 )*fair_average                # line includes 20
-                        })
-
-
-
-
-
-
-                
                 threads = []
                 for i in start_stop_line_list:
                     #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
@@ -540,65 +536,13 @@ def run():
                             #id=2, 
                             body=json.loads(line)
                         )
+                print("Successfully data imported!")
+                exit(0)
+                return
             else:
+                # calculate each thread reads how many lines
+                start_stop_line_list = new_return_start_stop_for_multi_thread_in_list(lines=lines, thread_amount=thread_amount)
 
-                # lets assume if there were 17 lines and 4 threads, 
-                # thread (1)(2)(3) can have 5 job tasks maximumly. thread (4) only has 2 job tasks
-                #
-                # their job list:
-                #               iter 0        iter 1             iter 2            iter 3
-                #               thread 1      thread 2           thread 3          thread 4
-                # line/job num  1,2,3,4,5     6,7,8,9,10         11,12,13,14,15    16,17
-                #
-                # iter means iteration
-                #
-
-                start_stop_line_list = []
-                last_remains = lines % thread_amount                        # 17 % 4 -> 1
-
-                # for example if lines -> 17
-                if last_remains:
-                    # entend the lines to ideally perfect
-                    fair_average = (lines + thread_amount - last_remains) / thread_amount           # ( 17 + 4 - 1 ) / 4 = 5
-
-
-                    # dump 'start' and 'stop' 
-                    for i in range(thread_amount):
-
-                            # if has last_remains
-                            if i != range(thread_amount)[-1]:
-                                start_stop_line_list.append( 
-                                        {
-                                            "start": i*fair_average + 1,            # line includes 1
-                                            "stop": ( i+1 )*fair_average            # line includes 5
-                                })
-                            else:
-                                start_stop_line_list.append( 
-                                        {
-                                            "start": i*fair_average + 1,            # line includes 16
-                                            "stop": lines                           # line includes 17
-                                })
-
-
-                # for example if lines -> 20
-                else:
-                    # dump 'start' and 'stop' 
-                    for i in range(thread_amount):
-
-                        fair_average = lines / thread_amount                                            # 20 / 4 = 5
-
-                        start_stop_line_list.append( 
-                                {
-                                    "start": i*fair_average + 1,                # line includes 16
-                                    "stop": ( i+1 )*fair_average                # line includes 20
-                        })
-
-
-
-
-
-
-                
                 threads = []
                 for i in start_stop_line_list:
                     #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
@@ -616,6 +560,7 @@ def run():
                     while len(threading.enumerate()) > 1:
                         pass
                     print("Successfully data imported!")
+                    exit(0)
                     return
                 except KeyboardInterrupt:
                     print(len(threading.enumerate()))
@@ -625,8 +570,6 @@ def run():
                     exit(0)
                     return
 
-            print("Successfully data imported!")
-            return
  
         else:
             show_help()
@@ -640,3 +583,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+    exit(0)
