@@ -3,7 +3,6 @@ json-py-es
 
 [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
 [![GitHub release](https://img.shields.io/github/release/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/releases)
-[![PyPI](https://img.shields.io/pypi/dm/jsonpyes.svg)](https://pypi.python.org/pypi/jsonpyes)
 [![GitHub license](https://img.shields.io/github/license/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/blob/master/LICENSE)
 
 Alexander Liu
@@ -12,7 +11,7 @@ Alexander Liu
 
 ![jsonpyes diagram](static/jsonpyes_data_processing_diagram.png)
 
-Very fast -- 5 to 10 times faster when processing big data.
+Very fast -- 4 to 10 times faster when processing big data.
 
 
 ### Installation
@@ -32,6 +31,15 @@ jsonpyes
     1. Only validating raw JSON data
     2. Without validating ,just import data to ElasticSearch
     3. After validating successfully, then import data to ElasticSearch
+
+    A valid JSON file here refers to a JSON file stacked with many lines of data
+    
+    file valid_data.json and its content
+
+    {"key1": "valueA", "key2": {"sub_key1": "value2A", "sub_key2": ["Good", "Morning"]}}
+    {"key1": "valueB", "key2": {"sub_key1": "value2B", "sub_key2": ["Good", "Afternoon"]}}
+    ...
+    {"key1": "valueC", "key2": {"sub_key1": "value2C", "sub_key2": ["Good", "Evening"]}}
 
 
 
