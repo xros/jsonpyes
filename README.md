@@ -3,7 +3,6 @@ json-py-es
 
 [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
 [![GitHub release](https://img.shields.io/github/release/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/releases)
-[![PyPI](https://img.shields.io/pypi/dm/jsonpyes.svg)](https://pypi.python.org/pypi/jsonpyes)
 [![GitHub license](https://img.shields.io/github/license/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/blob/master/LICENSE)
 
 Alexander Liu
@@ -12,7 +11,7 @@ Alexander Liu
 
 ![jsonpyes diagram](static/jsonpyes_data_processing_diagram.png)
 
-Very fast -- 5 to 10 times faster when processing big data.
+Very fast -- 4 to 10 times faster when processing big data.
 
 
 ### Installation
