@@ -34,12 +34,11 @@ jsonpyes
 
     **A valid JSON file here refers to a JSON file stacked with many lines of data**
     
-    `my_data.json`
-    ```
+    file *my_data.json* and its content
+
     {"key1": "valueA", "key2": {"sub_key1": "value2A", "sub_key2": ["Good", "Morning"]}}
     {"key1": "valueB", "key2": {"sub_key1": "value2B", "sub_key2": ["Good", "Afternoon"]}}
     {"key1": "valueC", "key2": {"sub_key1": "value2C", "sub_key2": ["Good", "Evening"]}}
-    ```
 
 
 
