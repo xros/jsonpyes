@@ -187,6 +187,9 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
             # delete previous docs
             del actions[0:len(actions)]
 
+    # clear all the caches out of the for-loop every time -- loop
+    linecache.clearcache()
+
     # if we have leftovers, finish them
     if len(actions) > 0:
         try:
