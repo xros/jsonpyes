@@ -31,8 +31,10 @@ import threading
 import linecache
 import jsonpyes_contrib
 from jsonpyes_contrib.utils import count_file_lines as c_file_lines
+from jsonpyes_contrib.utils import picklines, yieldlines
 import logging
 import time
+
 
 try:
     import simplejson as json
@@ -146,10 +148,146 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
     actions = []
     try_times = 0
     es = es
+    
+    # if the amount of lines-cut split by threads is lower than 5000 lines, loads the small piece for 1 time
+    # each thread works on less than 5000 lines of data
+    if (stop_line + 1 - start_line <= 5000):
+        # loads them all for 1 times
+
+        # all small lines
+        with open(data, 'r') as fd:
+            rows = picklines(thefile=fd, whatlines=range(start_line-1, stop_line))
+
+        for row in rows:
+            try:
+                action = {
+                    "_index": index,
+                    "_type": doc_type,
+                    "_source": json.loads(row)
+                }
+            except Exception, e:
+                print('jsonloads wrong')
+                logging.warning(str(e))
+                print('in small less than 5000 lines each threads')
+
+
+            actions.append(action)
+
+        while try_times < 5:
+            try:
+                # single chunk_bytes max upto 200 MB assumption
+                helpers.bulk(es, actions)
+                try_times = 0
+                break
+            except Exception, e:
+                try_times = try_times + 1
+                logging.warning("Can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e))
+                # wait for the ElasticSearch to response
+                time.sleep(5)
+        if try_times >= 5:
+            msg = "After trying " + str(try_times) + \
+                " times. It still can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e)
+            logging.error(msg)
+            try_times = 0
+
+        # delete previous docs
+        del actions[0:len(actions)]
+
+        
+        return
+
+    else:
+        interval_pieces = (stop_line + 1 - start_line / 5000) + 1
+        left_overs = stop_line - (5000*( interval_pieces -1 ))
+        # loads them all for pieces of times
+        flag_stop_loop = False
+        # TODO doesn't exit loop!!!
+        for i in range(0, interval_pieces):
+            # the last left overs , small than 5000 lines
+            if i >= (interval_pieces - 1 ):
+                flag_stop_loop = True
+                with open(data, 'r') as fd:
+                    rows = picklines(thefile=fd, whatlines=(range(start_line-1 + 5000*i), (start_line -1 + 5000*i + left_overs) ))
+            else:
+                with open(data, 'r') as fd:
+                    rows = picklines(thefile=fd, whatlines=(range(start_line-1 + 5000*i, start_line - 1 + 5000*(i+1) )))
+
+            for row in rows:
+                try:
+                    action = {
+                        "_index": index,
+                        "_type": doc_type,
+                        "_source": json.loads(row)
+                    }
+                except Exception, e:
+                    print('jsonloads wrong')
+                    logging.warning(str(e))
+                    print('each threads more than 5000 lines')
+
+                actions.append(action)
+
+            while try_times < 5:
+                try:
+                    # single chunk_bytes max upto 200 MB assumption
+                    helpers.bulk(es, actions)
+                    try_times = 0
+                    break
+                except Exception, e:
+                    try_times = try_times + 1
+                    logging.warning("Can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e))
+                    # wait for the ElasticSearch to response
+                    time.sleep(5)
+            if try_times >= 5:
+                msg = "After trying " + str(try_times) + \
+                    " times. It still can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e)
+                logging.error(msg)
+                try_times = 0
+
+            # delete previous docs
+            del actions[0:len(actions)]
+            print('almost end')
+            print(flag_stop_loop)
+            print('thread lines in loop ' + str(i))
+            print(interval_pieces)
+            if i > (interval_pieces - 1 ):
+                break
+
+        # terminate
+        return
+
+
+    """  old new 5x more time than linecache!!!
+
     # Using linecache to read big data in RAM
-    for i in range(start_line, stop_line + 1):
+    # fd = open(data)
+    for i in xrange(start_line, stop_line + 1):
         # Enhancement: This version of jsonpyes use `elastisearch.helpers.bulk`. Thanks to suggestion from piterjoin
-        row = linecache.getline(data, i)
+
+        # use enumerate instead of linecache to save memory!
+        # row = linecache.getline(data, i)
+        
+        # fd = open(data)
+
+        # i_new = i - start_line
+        # row = None
+        # for findex, fline in enumerate(fd,start=0):
+            # if findex == i:
+                # row = fline.strip()
+                # break
+
+
+        # if row is None:
+            # print('Internal failure! enumerate bug in codes')
+            # exit(0)
+
+
+
+        # here we only pick one line every time!
+        row = picklines(thefile=open(data), whatlines=[i-1])[0]
+        # print(i)
+
+        # row = get_lines(data, i)
+
         try:
             action = {
                 "_index": index,
@@ -157,6 +295,7 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
                 "_source": json.loads(row)
             }
         except Exception, e:
+            print('jsonloads wrong')
             logging.warning(str(e))
             continue
 
@@ -188,7 +327,11 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
             del actions[0:len(actions)]
 
     # clear all the caches out of the for-loop every time -- loop
-    linecache.clearcache()
+    # linecache.clearcache()
+
+    # close the file
+    # fd.close()
+
 
     # if we have leftovers, finish them
     if len(actions) > 0:
@@ -201,6 +344,8 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
 
     # terminate this job
     return
+
+    """
 
 def new_return_start_stop_for_multi_thread_in_list(lines=0, thread_amount=1):
     """Return a list
@@ -235,7 +380,7 @@ def new_return_start_stop_for_multi_thread_in_list(lines=0, thread_amount=1):
     # last_remains = lines - (thread_amount * each_has)
     last_remains = lines % thread_amount                        # 17 % 4 -> 1
     
-    for t in range(thread_amount):
+    for t in xrange(thread_amount):
         start_stop_line_list.append(
             {
                 "start": each_has * t + 1,
@@ -327,7 +472,7 @@ def run():
         # logic set
         process_jobs = []
         
-        for i in range(len(sys.argv[0:])):
+        for i in xrange(len(sys.argv[0:])):
             if sys.argv[i].startswith("--"):
                 try:
                     option = sys.argv[i][2:]

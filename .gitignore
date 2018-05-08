@@ -70,3 +70,9 @@ coverage.xml
 *.pot
 # Sphinx documentation
 docs/_build/
+
+# dev env
+env_27_jsonpyes/
+t.py
+test-10000-lines.json
+test-*
