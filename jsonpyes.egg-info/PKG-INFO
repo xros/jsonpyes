@@ -4,7 +4,7 @@ Version: 1.4.0
 Summary: A Tool to Import JSON raw data to ElasticSearch in one line of commands
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
-Author-email: PGP E6DE7BEA
+Author-email: alex@nervey.com
 License: FTE V1
 Download-URL: https://github.com/xros/jsonpyes/archive/1.4.0.zip
 Description: json-py-es
