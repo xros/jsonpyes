@@ -156,7 +156,7 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
                 "_type": doc_type,
                 "_source": json.loads(row)
             }
-        except Exception, e:
+        except Exception as e:
             logging.warning(str(e))
             continue
 
@@ -173,7 +173,7 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
                     helpers.bulk(es, actions)
                     try_times = 0
                     break
-                except Exception, e:
+                except Exception as e:
                     try_times = try_times + 1
                     logging.warning("Can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e))
                     # wait for the ElasticSearch to response
@@ -194,7 +194,7 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
     if len(actions) > 0:
         try:
             helpers.bulk(es, actions)
-        except Exception, e:
+        except Exception as e:
             logging.warning("Can not send a group of actions(docs) to ElasticSearch using parallel_bulk, with error: " + str(e))
         # delete previous docs
         del actions[0:len(actions)]
