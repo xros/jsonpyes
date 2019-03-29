@@ -18,7 +18,7 @@ Very fast -- 4 to 10 times faster when processing big data.
 
 ```pip install jsonpyes```  
 
-> **Notice**: Before using `pip` to install `jsonpyes`, firstly you need to install `python-pip` on your system. ( Supports Python2.6, Python2.7 )
+> **Notice**: Before using `pip` to install `jsonpyes`, firstly you need to install `python-pip` on your system. ( Supports Python Python2.7, 3.3, 3,4, 3.5, 3.6 )
 
 
 jsonpyes
