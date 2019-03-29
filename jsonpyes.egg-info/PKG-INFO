@@ -1,7 +1,7 @@
 Metadata-Version: 1.1
 Name: jsonpyes
 Version: 1.4.0
-Summary: Import JSON raw data to ElasticSearch using Python in one line of commands
+Summary: A Tool to Import JSON raw data to ElasticSearch in one line of commands
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
 Author-email: PGP E6DE7BEA
