@@ -51,6 +51,7 @@ meta = dict(re.findall(r"""__([a-z]+)__ = '([^']+)""", read_file(init_fn)))
 
 # Get the long description from the README file
 readme = read_file(os.path.join(here, 'README.rst'))
+readme_md = read_file(os.path.join(here, 'README.md'))
 # changes = read_file(os.path.join(here, 'CHANGES.rst'))
 version = meta['version']
 
@@ -61,7 +62,8 @@ setup(name='jsonpyes',
         author_email='alex@nervey.com',
         license="FTE V1",
         description="A Tool to Import JSON raw data to ElasticSearch in one line of commands",
-        long_description=readme,
+        long_description=readme_md,
+        long_description_content_type='text/markdown',
         platforms=["Unix","Linux","OSX","Android","Windows"],
         url="https://github.com/xros/jsonpyes",
         # download_url="https://github.com/xros/jsonpyes/tarball/" + version,
