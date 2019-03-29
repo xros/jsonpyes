@@ -1,12 +1,12 @@
 Metadata-Version: 1.1
 Name: jsonpyes
-Version: 1.3.1
+Version: 1.4.0
 Summary: Import JSON raw data to ElasticSearch using Python in one line of commands
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
 Author-email: PGP E6DE7BEA
 License: FTE V1
-Download-URL: https://github.com/xros/jsonpyes/archive/1.3.1.zip
+Download-URL: https://github.com/xros/jsonpyes/archive/1.4.0.zip
 Description: json-py-es
         ==========
         
@@ -21,6 +21,7 @@ Description: json-py-es
            :alt: jsonpyes diagram
         
            jsonpyes diagram
+        
         Very fast -- 4 to 10 times faster when processing big data.
         
         Installation
@@ -29,8 +30,8 @@ Description: json-py-es
         ``pip install jsonpyes``
         
             **Notice**: Before using ``pip`` to install ``jsonpyes``, firstly
-            you need to install ``python-pip`` on your system. ( Supports
-            Python2.6, Python2.7 )
+            you need to install ``python-pip`` on your system. ( Supports Python
+            Python2.7, 3.3, 3,4, 3.5, 3.6 )
         
         jsonpyes
         --------
@@ -39,6 +40,7 @@ Description: json-py-es
            :alt: user interface
         
            user interface
+        
         Instructions:
         ^^^^^^^^^^^^^
         
@@ -72,12 +74,14 @@ Description: json-py-es
            :alt: json valid
         
            json valid
+        
         If the json data file is invalid:
         
         .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
            :alt: json invalid
         
            json invalid
+        
         2. Only importing without validating
         ''''''''''''''''''''''''''''''''''''
         
@@ -93,6 +97,7 @@ Description: json-py-es
            :alt: no threads
         
            no threads
+        
         ``jsonpyes`` supports multi-threads when importing data to elasticsearch
         
         Multi-threads comparison
@@ -104,6 +109,7 @@ Description: json-py-es
               :alt: benchmarks
         
               benchmarks
+        
         2. With 8 threads and ``jsonpyes`` cuts files into pieces, then
            destributes to workers fairly
         
@@ -124,6 +130,7 @@ Description: json-py-es
            :alt: it works
         
            it works
+        
         3. Both validating and importing
         ''''''''''''''''''''''''''''''''
         
@@ -133,12 +140,14 @@ Description: json-py-es
            :alt: validating and importing
         
            validating and importing
+        
         And it works.
         
         .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg
            :alt: the results
         
            the results
+        
         Reference
         ---------
         
@@ -148,6 +157,7 @@ Description: json-py-es
            :alt: handwritting
         
            handwritting
+        
         Happy hacking!
         ''''''''''''''
         

@@ -12,6 +12,7 @@ Alexander Liu
    :alt: jsonpyes diagram
 
    jsonpyes diagram
+
 Very fast -- 4 to 10 times faster when processing big data.
 
 Installation
@@ -20,8 +21,8 @@ Installation
 ``pip install jsonpyes``
 
     **Notice**: Before using ``pip`` to install ``jsonpyes``, firstly
-    you need to install ``python-pip`` on your system. ( Supports
-    Python2.6, Python2.7 )
+    you need to install ``python-pip`` on your system. ( Supports Python
+    Python2.7, 3.3, 3,4, 3.5, 3.6 )
 
 jsonpyes
 --------
@@ -30,6 +31,7 @@ jsonpyes
    :alt: user interface
 
    user interface
+
 Instructions:
 ^^^^^^^^^^^^^
 
@@ -63,12 +65,14 @@ If the json data file is valid:
    :alt: json valid
 
    json valid
+
 If the json data file is invalid:
 
 .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot99.jpg
    :alt: json invalid
 
    json invalid
+
 2. Only importing without validating
 ''''''''''''''''''''''''''''''''''''
 
@@ -84,6 +88,7 @@ Or enable multi-threads
    :alt: no threads
 
    no threads
+
 ``jsonpyes`` supports multi-threads when importing data to elasticsearch
 
 Multi-threads comparison
@@ -95,6 +100,7 @@ Multi-threads comparison
       :alt: benchmarks
 
       benchmarks
+
 2. With 8 threads and ``jsonpyes`` cuts files into pieces, then
    destributes to workers fairly
 
@@ -115,6 +121,7 @@ And it works.
    :alt: it works
 
    it works
+
 3. Both validating and importing
 ''''''''''''''''''''''''''''''''
 
@@ -124,12 +131,14 @@ And it works.
    :alt: validating and importing
 
    validating and importing
+
 And it works.
 
 .. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot101.jpg
    :alt: the results
 
    the results
+
 Reference
 ---------
 
@@ -139,6 +148,7 @@ Reference
    :alt: handwritting
 
    handwritting
+
 Happy hacking!
 ''''''''''''''
 
