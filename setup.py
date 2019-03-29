@@ -22,7 +22,7 @@ convert_the_doc_command = "pandoc --from=markdown --to=rst --output=" + os.path.
 # Trying to build the doc
 try:
     os.popen(convert_the_doc_command)
-except Exception, e:
+except Exception as e:
     pass
 
 # subprocess has check_output since python 2.7.0+
