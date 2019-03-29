@@ -70,3 +70,5 @@ coverage.xml
 *.pot
 # Sphinx documentation
 docs/_build/
+# setup.py install (package cache, no need)
+.eggs
