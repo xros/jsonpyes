@@ -1,6 +1,7 @@
 json-py-es
 ==========
 
+[![Downloads](https://pepy.tech/badge/jsonpyes)](https://pepy.tech/project/jsonpyes)
 [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
 [![GitHub release](https://img.shields.io/github/release/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/releases)
 [![GitHub license](https://img.shields.io/github/license/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/blob/master/LICENSE)
