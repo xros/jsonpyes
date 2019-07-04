@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 1.1
 Name: jsonpyes
 Version: 1.4.2
 Summary: A Tool to Import JSON raw data to ElasticSearch in one line of commands
@@ -28,7 +28,7 @@ Description: json-py-es
         
         ```pip install jsonpyes```  
         
-        > **Notice**: Before using `pip` to install `jsonpyes`, firstly you need to install `python-pip` on your system. ( Supports Python Python2.7, 3.3, 3,4, 3.5, 3.6 )
+        > **Notice**: Before using `pip` to install `jsonpyes`, firstly you need to install `python-pip` on your system. ( Supports Python2.7, 3,4, 3.5, 3.6 )
         
         
         jsonpyes
@@ -124,4 +124,3 @@ Platform: Linux
 Platform: OSX
 Platform: Android
 Platform: Windows
-Description-Content-Type: text/markdown

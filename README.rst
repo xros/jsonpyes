@@ -21,8 +21,8 @@ Installation
 ``pip install jsonpyes``
 
     **Notice**: Before using ``pip`` to install ``jsonpyes``, firstly
-    you need to install ``python-pip`` on your system. ( Supports Python
-    Python2.7, 3.3, 3,4, 3.5, 3.6 )
+    you need to install ``python-pip`` on your system. ( Supports
+    Python2.7, 3,4, 3.5, 3.6 )
 
 jsonpyes
 --------
