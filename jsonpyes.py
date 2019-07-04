@@ -406,18 +406,20 @@ def run():
         doc_type = ""
         thread_amount = 1
         # Get info from process_jobs
+        # fix the syntax bug after upgrading support from Python2.7 to Python3.6, thanks to @tdracz
         for job in process_jobs:
             if type(job) == dict:
-                if job.has_key('data'):
+                if 'data' in job:
                     data = job['data']
-                if job.has_key('bulk'):
+                if 'bulk' in job:
                     bulk = job['bulk']
-                if job.has_key('index'):
+                if 'index' in job:
                     index = job['index']
-                if job.has_key('type'):
+                if 'type' in job:
                     doc_type = job['type']
-                if job.has_key('thread'):
+                if 'thread' in job:
                     thread_amount = int(job['thread_amount'])
+
 
         #### 1) Only check not importing
         if ("check" in process_jobs) and ("import" not in process_jobs) :
