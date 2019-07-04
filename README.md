@@ -105,6 +105,6 @@ Reference
 ---------
 * Algorithm handwritting
 
-![handwritting](http://i.imgur.com/fgm1Mxt.jpg?1)
+![handwritting](https://raw.githubusercontent.com/xros/jsonpyes/master/static/algo.png)
 
 ##### Happy hacking!
