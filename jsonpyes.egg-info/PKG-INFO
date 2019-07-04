@@ -1,15 +1,16 @@
 Metadata-Version: 2.1
 Name: jsonpyes
-Version: 1.4.1
+Version: 1.4.2
 Summary: A Tool to Import JSON raw data to ElasticSearch in one line of commands
 Home-page: https://github.com/xros/jsonpyes
 Author: Alexander Liu
 Author-email: alex@nervey.com
 License: FTE V1
-Download-URL: https://github.com/xros/jsonpyes/archive/1.4.1.zip
+Download-URL: https://github.com/xros/jsonpyes/archive/1.4.2.zip
 Description: json-py-es
         ==========
         
+        [![Downloads](https://pepy.tech/badge/jsonpyes)](https://pepy.tech/project/jsonpyes)
         [![Build Status](https://travis-ci.org/xros/jsonpyes.svg?branch=master)](https://travis-ci.org/xros/jsonpyes)
         [![GitHub release](https://img.shields.io/github/release/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/releases)
         [![GitHub license](https://img.shields.io/github/license/xros/jsonpyes.svg)](https://github.com/xros/jsonpyes/blob/master/LICENSE)
@@ -113,7 +114,7 @@ Description: json-py-es
         ---------
         * Algorithm handwritting
         
-        ![handwritting](http://i.imgur.com/fgm1Mxt.jpg?1)
+        ![handwritting](https://raw.githubusercontent.com/xros/jsonpyes/master/static/algo.png)
         
         ##### Happy hacking!
         
