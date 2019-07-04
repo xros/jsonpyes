@@ -1,7 +1,7 @@
 json-py-es
 ==========
 
-|Build Status| |GitHub release| |GitHub license|
+|Downloads| |Build Status| |GitHub release| |GitHub license|
 
 Alexander Liu
 
@@ -144,7 +144,7 @@ Reference
 
 -  Algorithm handwritting
 
-.. figure:: http://i.imgur.com/fgm1Mxt.jpg?1
+.. figure:: https://raw.githubusercontent.com/xros/jsonpyes/master/static/algo.png
    :alt: handwritting
 
    handwritting
@@ -152,6 +152,8 @@ Reference
 Happy hacking!
 ''''''''''''''
 
+.. |Downloads| image:: https://pepy.tech/badge/jsonpyes
+   :target: https://pepy.tech/project/jsonpyes
 .. |Build Status| image:: https://travis-ci.org/xros/jsonpyes.svg?branch=master
    :target: https://travis-ci.org/xros/jsonpyes
 .. |GitHub release| image:: https://img.shields.io/github/release/xros/jsonpyes.svg
