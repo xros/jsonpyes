@@ -153,9 +153,10 @@ def worker_import_to_es_for_threading(data='a_raw_file.json', start_line=0, stop
         try:
             action = {
                 "_index": index,
-                "_type": doc_type,
                 "_source": json.loads(row)
             }
+            if doc_type:
+                action["_type"] = doc_type
         except Exception as e:
             logging.warning(str(e))
             continue
@@ -443,10 +444,10 @@ def run():
             # read JSON data
             with open(data, 'r') as f:
                 for line in f:
-                    es.index(index=index, doc_type=doc_type, 
-                        #id=2, 
-                        body=json.loads(line)
-                    )
+                    if doc_type:
+                        es.index(index=index, doc_type=doc_type, body=json.loads(line))
+                    else:
+                        es.index(index=index, body=json.loads(line))
             
             print("Successfully data imported!")
             return
@@ -458,10 +459,10 @@ def run():
             # read JSON data
             with open(data, 'r') as f:
                 for line in f:
-                    es.index(index=index, doc_type=doc_type, 
-                        #id=2, 
-                        body=json.loads(line)
-                    )
+                    if doc_type:
+                        es.index(index=index, doc_type=doc_type, body=json.loads(line))
+                    else:
+                        es.index(index=index, body=json.loads(line))
             
             print("Successfully data imported!")
             return
@@ -481,10 +482,10 @@ def run():
                 # read JSON data
                 with open(data, 'r') as f:
                     for line in f:
-                        es.index(index=index, doc_type=doc_type, 
-                            #id=2, 
-                            body=json.loads(line)
-                        )
+                        if doc_type:
+                            es.index(index=index, doc_type=doc_type, body=json.loads(line))
+                        else:
+                            es.index(index=index, body=json.loads(line))
             else:
                 # calculate each thread reads how many lines
                 start_stop_line_list = new_return_start_stop_for_multi_thread_in_list(lines=lines, thread_amount=thread_amount)
@@ -537,10 +538,10 @@ def run():
                 # read JSON data
                 with open(data, 'r') as f:
                     for line in f:
-                        es.index(index=index, doc_type=doc_type, 
-                            #id=2, 
-                            body=json.loads(line)
-                        )
+                        if doc_type:
+                            es.index(index=index, doc_type=doc_type, body=json.loads(line))
+                        else:
+                            es.index(index=index, body=json.loads(line))
                 print("Successfully data imported!")
                 exit(0)
                 return
