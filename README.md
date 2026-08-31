@@ -1,3 +1,5 @@
+
+
 json-py-es
 ==========
 
@@ -66,6 +68,7 @@ If the json data file is invalid:
 Notice: If the raw JSON data file is invalid, `jsonpyes` will not import it.
 
 Or enable multi-threads ```jsonpyes --data raw_data.json --bulk http://localhost:9200 --import --index myindex2 --type mytype2 --thread 8```
+The `--thread` option defaults to 1.
 
 ![no threads](https://raw.githubusercontent.com/xros/jsonpyes/master/static/snapshot102.jpg)
 
